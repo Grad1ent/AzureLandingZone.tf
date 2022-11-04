@@ -7,14 +7,13 @@ terraform {
   }
 
   required_version = ">= 1.1.0"
-/*
+
   backend "azurerm" {
-      resource_group_name  = "devAutomation"
-      storage_account_name = "stterraform"
-      container_name       = "tfstate"
-      key                  = "samples/intro/infra.terraform.tfstate"
+      resource_group_name  = "devDevOps"
+      storage_account_name = "devdevopstfstates"
+      container_name       = "tfstates"
+      key                  = "intro/dev/infra.tfstate"
   }
-*/
 }
 
 provider "azurerm" {
