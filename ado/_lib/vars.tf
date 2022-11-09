@@ -25,16 +25,16 @@ variable "snet_hub_bastion_name" {
   type = string
 }
 
-variable "snet_hub_bastion_address_prefix" {
-  type = string
+variable "snet_hub_bastion_address_prefixes" {
+  type = list(string)
 }
 
 variable "snet_hub_name" {
   type = string
 }
 
-variable "snet_hub_address_prefix" {
-  type = string
+variable "snet_hub_address_prefixes" {
+  type = list(string)
 }
 
 #
@@ -56,8 +56,8 @@ variable "snet_spoke_01_name" {
   type = string
 }
 
-variable "snet_spoke_01_address_prefix" {
-  type = string
+variable "snet_spoke_01_address_prefixes" {
+  type = list(string)
 }
 
 
