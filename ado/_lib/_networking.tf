@@ -77,7 +77,7 @@ resource "azurerm_network_security_group" "nsg_snet_hub" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "ass_nsg_snet_hub" {
-  subnet_id                 = azurerm_subnet.snet_hub
+  subnet_id                 = azurerm_subnet.snet_hub.id
   network_security_group_id = azurerm_network_security_group.nsg_snet_hub.id
 }
 
@@ -88,8 +88,8 @@ resource "azurerm_network_security_group" "nsg_snet_spoke_01" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "ass_nsg_snet_spoke_01" {
-  subnet_id                 = azurerm_subnet.snet_spoke_01
-  network_security_group_id = azurerm_network_security_group.nsg_snet_spoke_01
+  subnet_id                 = azurerm_subnet.snet_spoke_01.id
+  network_security_group_id = azurerm_network_security_group.nsg_snet_spoke_01.id
 }
 
 
