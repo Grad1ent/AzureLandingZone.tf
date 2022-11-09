@@ -26,7 +26,7 @@ variable "snet_hub_bastion_name" {
 }
 
 variable "snet_hub_bastion_address_prefixes" {
-  type = string
+  type = list(string)
 }
 
 variable "snet_hub_name" {
@@ -34,7 +34,7 @@ variable "snet_hub_name" {
 }
 
 variable "snet_hub_address_prefixes" {
-  type = string
+  type = list(string)
 }
 
 variable "nsg_snet_hub_bastion_name" {
@@ -66,7 +66,7 @@ variable "snet_spoke_01_name" {
 }
 
 variable "snet_spoke_01_address_prefixes" {
-  type = string
+  type = list(string)
 }
 
 variable "nsg_snet_spoke_01_name" {
