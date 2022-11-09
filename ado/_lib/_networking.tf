@@ -46,7 +46,7 @@ resource "azurerm_virtual_network_peering" "peer_hub_spoke_01" {
 
 resource "azurerm_virtual_network_peering" "peer_spoke_01_hub" {
   name                      = "spoke_01-hub"
-  resource_group_name       = azurerm_resource_group.rg_spoke_01
+  resource_group_name       = azurerm_resource_group.rg_spoke_01.name
   virtual_network_name      = azurerm_virtual_network.vnet_spoke_01.name
   remote_virtual_network_id = azurerm_virtual_network.vnet_hub.id
 }
