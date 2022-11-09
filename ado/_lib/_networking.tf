@@ -32,3 +32,27 @@ resource "azurerm_virtual_network" "vnet_spoke_01" {
     address_prefix     = var.snet_spoke_01_address_prefix
   }
 }
+
+
+#
+# Peering hub <> spoke(s)
+#
+resource "azurerm_virtual_network_peering" "peer_hub_spoke_01" {
+  name                      = "hub-spoke_01"
+  resource_group_name       = azurerm_resource_group.rg_hub.name
+  virtual_network_name      = azurerm_virtual_network.vnet_hub.name
+  remote_virtual_network_id = azurerm_virtual_network.vnet_spoke_01.id
+}
+
+resource "azurerm_virtual_network_peering" "peer_spoke_01_hub" {
+  name                      = "spoke_01-hub"
+  resource_group_name       = azurerm_resource_group.rg_spoke_01
+  virtual_network_name      = azurerm_virtual_network.vnet_spoke_01.name
+  remote_virtual_network_id = azurerm_virtual_network.vnet_hub.id
+}
+
+
+
+
+
+
