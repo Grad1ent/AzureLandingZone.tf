@@ -98,13 +98,24 @@ security_rule {
     destination_address_prefix = "*"
   }
 security_rule {
-    name                       = "AllowBastionHostCommunication"
+    name                       = "AllowBastionHostCommunication_1"
     priority                   = 150
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
     source_port_range          = "*"
-    destination_port_range     = "8080, 5701"
+    destination_port_range     = "8080"
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "VirtualNetwork"
+  }
+security_rule {
+    name                       = "AllowBastionHostCommunication_2"
+    priority                   = 160
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "5701"
     source_address_prefix      = "VirtualNetwork"
     destination_address_prefix = "VirtualNetwork"
   }
@@ -132,13 +143,24 @@ security_rule {
     destination_address_prefix = "AzureCloud"
   }
 security_rule {
-    name                       = "AllowBastionCommunication"
+    name                       = "AllowBastionCommunication_1"
     priority                   = 120
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "*"
     source_port_range          = "*"
-    destination_port_range     = "8080, 5701"
+    destination_port_range     = "8080"
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "VirtualNetwork"
+  }
+security_rule {
+    name                       = "AllowBastionCommunication_2"
+    priority                   = 120
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "5701"
     source_address_prefix      = "VirtualNetwork"
     destination_address_prefix = "VirtualNetwork"
   }
