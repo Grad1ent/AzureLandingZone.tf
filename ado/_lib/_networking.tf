@@ -104,7 +104,7 @@ security_rule {
     access                     = "Allow"
     protocol                   = "*"
     source_port_range          = "*"
-    destination_port_range     = "8080,5701"
+    destination_port_range     = "8080, 5701"
     source_address_prefix      = "VirtualNetwork"
     destination_address_prefix = "VirtualNetwork"
   }
@@ -138,7 +138,7 @@ security_rule {
     access                     = "Allow"
     protocol                   = "*"
     source_port_range          = "*"
-    destination_port_range     = "8080,5701"
+    destination_port_range     = "8080, 5701"
     source_address_prefix      = "VirtualNetwork"
     destination_address_prefix = "VirtualNetwork"
   }
