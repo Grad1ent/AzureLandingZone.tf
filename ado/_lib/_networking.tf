@@ -155,7 +155,7 @@ security_rule {
   }
 security_rule {
     name                       = "AllowBastionCommunication_2"
-    priority                   = 120
+    priority                   = 130
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "*"
@@ -166,7 +166,7 @@ security_rule {
   }
 security_rule {
     name                       = "AllowGetSessionInformation"
-    priority                   = 130
+    priority                   = 140
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "*"
