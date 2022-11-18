@@ -66,7 +66,7 @@ resource "azurerm_network_security_group" "nsg_snet_hub_bastion" {
 
 security_rule {
     name                       = "AllowHttpsInbound"
-    priority                   = 120
+    priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -77,7 +77,7 @@ security_rule {
   }
 security_rule {
     name                       = "AllowGatewayManagerInbound"
-    priority                   = 130
+    priority                   = 110
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -88,7 +88,7 @@ security_rule {
   }
 security_rule {
     name                       = "AllowAzureLoadBalancerInbound"
-    priority                   = 140
+    priority                   = 120
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -99,7 +99,7 @@ security_rule {
   }
 security_rule {
     name                       = "AllowBastionHostCommunication_1"
-    priority                   = 150
+    priority                   = 130
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
@@ -110,7 +110,7 @@ security_rule {
   }
 security_rule {
     name                       = "AllowBastionHostCommunication_2"
-    priority                   = 160
+    priority                   = 140
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
