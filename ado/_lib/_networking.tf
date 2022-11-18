@@ -121,19 +121,30 @@ security_rule {
   }
 
 security_rule {
-    name                       = "AllowSshRdpOutbound"
+    name                       = "AllowSshOutbound"
     priority                   = 100
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "*"
     source_port_range          = "*"
-    destination_port_range     = "22,3389"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "VirtualNetwork"
+  }
+security_rule {
+    name                       = "AllowRdpOutbound"
+    priority                   = 110
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
     source_address_prefix      = "*"
     destination_address_prefix = "VirtualNetwork"
   }
 security_rule {
     name                       = "AllowAzureCloudOutbound"
-    priority                   = 110
+    priority                   = 120
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -144,7 +155,7 @@ security_rule {
   }
 security_rule {
     name                       = "AllowBastionCommunication_1"
-    priority                   = 120
+    priority                   = 130
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "*"
@@ -155,7 +166,7 @@ security_rule {
   }
 security_rule {
     name                       = "AllowBastionCommunication_2"
-    priority                   = 130
+    priority                   = 140
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "*"
@@ -166,7 +177,7 @@ security_rule {
   }
 security_rule {
     name                       = "AllowGetSessionInformation"
-    priority                   = 140
+    priority                   = 150
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "*"
