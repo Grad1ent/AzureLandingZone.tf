@@ -1,0 +1,122 @@
+{
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub",
+		"resource_type": "azurerm_resource_group",
+		"resource_name": "res-0"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/bastionHosts/devHubBastion": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/bastionHosts/devHubBastion",
+		"resource_type": "azurerm_bastion_host",
+		"resource_name": "res-1"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg",
+		"resource_type": "azurerm_network_security_group",
+		"resource_name": "res-2"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowAzureCloudOutbound": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowAzureCloudOutbound",
+		"resource_type": "azurerm_network_security_rule",
+		"resource_name": "res-3"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowAzureLoadBalancerInbound": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowAzureLoadBalancerInbound",
+		"resource_type": "azurerm_network_security_rule",
+		"resource_name": "res-4"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowBastionCommunication_1": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowBastionCommunication_1",
+		"resource_type": "azurerm_network_security_rule",
+		"resource_name": "res-5"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowBastionCommunication_2": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowBastionCommunication_2",
+		"resource_type": "azurerm_network_security_rule",
+		"resource_name": "res-6"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowBastionHostCommunication_1": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowBastionHostCommunication_1",
+		"resource_type": "azurerm_network_security_rule",
+		"resource_name": "res-7"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowBastionHostCommunication_2": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowBastionHostCommunication_2",
+		"resource_type": "azurerm_network_security_rule",
+		"resource_name": "res-8"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowGatewayManagerInbound": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowGatewayManagerInbound",
+		"resource_type": "azurerm_network_security_rule",
+		"resource_name": "res-9"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowGetSessionInformation": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowGetSessionInformation",
+		"resource_type": "azurerm_network_security_rule",
+		"resource_name": "res-10"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowHttpsInbound": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowHttpsInbound",
+		"resource_type": "azurerm_network_security_rule",
+		"resource_name": "res-11"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowRdpOutbound": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowRdpOutbound",
+		"resource_type": "azurerm_network_security_rule",
+		"resource_name": "res-12"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowSshOutbound": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubBastionSnetNsg/securityRules/AllowSshOutbound",
+		"resource_type": "azurerm_network_security_rule",
+		"resource_name": "res-13"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubSnetNsg": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/networkSecurityGroups/devHubSnetNsg",
+		"resource_type": "azurerm_network_security_group",
+		"resource_name": "res-14"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/publicIPAddresses/devHubBastionPip": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/publicIPAddresses/devHubBastionPip",
+		"resource_type": "azurerm_public_ip",
+		"resource_name": "res-15"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet",
+		"resource_type": "azurerm_virtual_network",
+		"resource_name": "res-16"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/subnets/AzureBastionSubnet": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/subnets/AzureBastionSubnet",
+		"resource_type": "azurerm_subnet",
+		"resource_name": "res-17"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/subnets/AzureBastionSubnet/networkSecurityGroups/L3N1YnNjcmlwdGlvbnMvZTgyZGQzMGQtMzUyMC00ZjI5LWIxZTctMWE2NzFlMTdjNGMzL3Jlc291cmNlR3JvdXBzL2Rldkh1Yi9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmsvbmV0d29ya1NlY3VyaXR5R3JvdXBzL2Rldkh1YkJhc3Rpb25TbmV0TnNn": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/subnets/AzureBastionSubnet",
+		"resource_type": "azurerm_subnet_network_security_group_association",
+		"resource_name": "res-18"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/subnets/GatewaySubnet": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/subnets/GatewaySubnet",
+		"resource_type": "azurerm_subnet",
+		"resource_name": "res-19"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/subnets/devHubSnet": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/subnets/devHubSnet",
+		"resource_type": "azurerm_subnet",
+		"resource_name": "res-20"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/subnets/devHubSnet/networkSecurityGroups/L3N1YnNjcmlwdGlvbnMvZTgyZGQzMGQtMzUyMC00ZjI5LWIxZTctMWE2NzFlMTdjNGMzL3Jlc291cmNlR3JvdXBzL2Rldkh1Yi9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmsvbmV0d29ya1NlY3VyaXR5R3JvdXBzL2Rldkh1YlNuZXROc2c=": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/subnets/devHubSnet",
+		"resource_type": "azurerm_subnet_network_security_group_association",
+		"resource_name": "res-21"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/virtualNetworkPeerings/devdevopspeer": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/virtualNetworkPeerings/devdevopspeer",
+		"resource_type": "azurerm_virtual_network_peering",
+		"resource_name": "res-22"
+	},
+	"/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/virtualNetworkPeerings/devmlpeer": {
+		"resource_id": "/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/devHub/providers/Microsoft.Network/virtualNetworks/devHubVnet/virtualNetworkPeerings/devmlpeer",
+		"resource_type": "azurerm_virtual_network_peering",
+		"resource_name": "res-23"
+	}
+}
