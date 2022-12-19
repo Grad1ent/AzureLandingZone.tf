@@ -1,0 +1,5 @@
+module "cmdb" {
+    source = "../../cmdb"
+}
+
+
