@@ -48,6 +48,17 @@ locals {
         }          
     }
 
+    #PIPs
+    public_ip_addresses = {
+
+        pip_hub_01 = {
+            name = "${var.prefix}HubBastionPip"
+            sku = "Standard"
+            allocation_method = "Static"
+            resource_group_name = local.rg_hub_name
+        }
+    }
+        
     # Tags
     tags = {
         "Data Classification"   = "Internal"

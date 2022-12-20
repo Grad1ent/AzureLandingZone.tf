@@ -17,7 +17,7 @@ resource "azurerm_virtual_network" virtual_netoworks {
         
         }
 
-        tags = module.cmdb.tags
+        #tags = module.cmdb.tags
 
     lifecycle {
         ignore_changes = [tags]

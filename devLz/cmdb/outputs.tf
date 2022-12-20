@@ -14,6 +14,10 @@ output "virtual_netoworks" {
   value = local.virtual_netoworks
 }
 
+output "public_ip_addresses" {
+  value =  local.public_ip_addresses
+}
+
 output "tags" {
   value = local.tags
 }
