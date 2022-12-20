@@ -14,6 +14,10 @@ output "virtual_netoworks" {
   value = local.virtual_netoworks
 }
 
+output "network_security_groups" {
+  value = local.network_security_groups
+}
+
 output "public_ip_addresses" {
   value =  local.public_ip_addresses
 }
