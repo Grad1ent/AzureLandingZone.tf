@@ -13,6 +13,7 @@ resource "azurerm_virtual_network" virtual_netoworks {
             content{
                 name = subnet.value.name
                 address_prefix = subnet.value.address_prefix
+                security_group = azurerm_network_security_group.network_security_groups[subnet.value.nsg].id
             }   
         
         }
