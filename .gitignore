@@ -1,6 +1,6 @@
 *.ps1
 *.exe
-intro/envs/dev/.terraform/providers/registry.terraform.io/hashicorp/azurerm/3.30.0/windows_amd64/terraform-provider-azurerm_v3.30.0_x5.exe
+.gitignore
 
 # Local .terraform directories
 **/.terraform/*
