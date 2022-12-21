@@ -5,8 +5,8 @@ locals {
  
     # Resource groups
     rg_hub_name = "${var.prefix}Hub"
-    rg_spoke_01_name = "${var.prefix}ML"
-    rg_spoke_02_name = "${var.prefix}TF"
+    rg_spoke_01_name = "${var.prefix}${var.spoke_01}"
+    rg_spoke_02_name = "${var.prefix}${var.spoke_02}"
 
     resoure_group_names = [
         local.rg_hub_name,
@@ -27,26 +27,26 @@ locals {
                             address_prefix = "10.100.10.0/24"
                             nsg = "nsg_hub_bastion"
                         },{
-                            name = "IaasSnet"
+                            name = "${var.prefix}HubIaasSnet"
                             address_prefix = "10.100.100.0/24"
                             nsg = "nsg_hub_iaas"
                         },{
-                            name = "PaasSnet"
+                            name = "${var.prefix}HubPaasSnet"
                             address_prefix = "10.100.200.0/24"
                             nsg = "nsg_hub_paas"
                         }]
         },
         vnet_spoke_01 = {
-            name = "${var.prefix}MLVnet"
+            name = "${var.prefix}${var.spoke_01}Vnet"
             address_space     = ["10.200.0.0/16"]
             resource_group_name  = local.rg_spoke_01_name
             
             subnets = [{
-                            name = "IaasSnet"
+                            name = "${var.prefix}${var.spoke_01}IaasSnet"
                             address_prefix = "10.200.100.0/24"
                             nsg = "nsg_spoke_01_iaas"
                         },{
-                            name = "PaasSnet"
+                            name = "${var.prefix}${var.spoke_01}PaasSnet"
                             address_prefix = "10.200.200.0/24"
                             nsg = "nsg_spoke_01_paas"
                         }]
@@ -215,7 +215,7 @@ locals {
             }]
         },
         nsg_spoke_01_iaas = {
-            name = "${var.prefix}IaasSnetNsg"
+            name = "${var.prefix}${var.spoke_01}IaasSnetNsg"
             resource_group_name  = local.rg_spoke_01_name
 
             security_rules = [{
@@ -231,7 +231,7 @@ locals {
             }]
         },
         nsg_spoke_01_paas = {
-            name = "${var.prefix}PaasSnetNsg"
+            name = "${var.prefix}${var.spoke_01}PaasSnetNsg"
             resource_group_name  = local.rg_spoke_01_name
 
             security_rules = [{
