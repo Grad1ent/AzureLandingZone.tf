@@ -50,6 +50,21 @@ locals {
                             address_prefix = "10.200.200.0/24"
                             nsg = "nsg_spoke_01_paas"
                         }]
+        },          
+        vnet_spoke_02 = {
+            name = "${var.prefix}${var.spoke_02}Vnet"
+            address_space     = ["10.220.0.0/16"]
+            resource_group_name  = local.rg_spoke_02_name
+            
+            subnets = [{
+                            name = "${var.prefix}${var.spoke_02}IaasSnet"
+                            address_prefix = "10.220.100.0/24"
+                            nsg = "nsg_spoke_01_iaas"
+                        },{
+                            name = "${var.prefix}${var.spoke_02}PaasSnet"
+                            address_prefix = "10.220.200.0/24"
+                            nsg = "nsg_spoke_01_paas"
+                        }]
         }          
     }
 
@@ -63,10 +78,23 @@ locals {
             dst_vnet = "vnet_spoke_01"
 
         },
+        peer_hub_spoke_02 = {
+            name = "${var.prefix}${var.spoke_02}VnetPeer"
+            resource_group_name  = local.rg_hub_name
+            src_vnet = "vnet_hub"
+            dst_vnet = "vnet_spoke_02"
+
+        },
         peer_spoke_01_hub = {
             name = "${var.prefix}HubVnetPeer"
             resource_group_name  = local.rg_spoke_01_name
             src_vnet = "vnet_spoke_01"
+            dst_vnet = "vnet_hub"
+        },
+        peer_spoke_02_hub = {
+            name = "${var.prefix}HubVnetPeer"
+            resource_group_name  = local.rg_spoke_02_name
+            src_vnet = "vnet_spoke_02"
             dst_vnet = "vnet_hub"
         }
 
@@ -264,6 +292,38 @@ locals {
                 source_address_prefix       = "VirtualNetwork"
                 source_port_range           = "*"                      
             }]
+        },    
+        nsg_spoke_02_iaas = {
+            name = "${var.prefix}${var.spoke_02}IaasSnetNsg"
+            resource_group_name  = local.rg_spoke_02_name
+
+            security_rules = [{
+                access                      = "Allow"
+                destination_address_prefix  = "VirtualNetwork"
+                destination_port_range      = "*"
+                direction                   = "Outbound"
+                name                        = "AllowVnetOutBoundCustom"
+                priority                    = 4096
+                protocol                    = "*"
+                source_address_prefix       = "VirtualNetwork"
+                source_port_range           = "*"                      
+            }]
+        },
+        nsg_spoke_02_paas = {
+            name = "${var.prefix}${var.spoke_02}PaasSnetNsg"
+            resource_group_name  = local.rg_spoke_02_name
+
+            security_rules = [{
+                access                      = "Allow"
+                destination_address_prefix  = "VirtualNetwork"
+                destination_port_range      = "*"
+                direction                   = "Outbound"
+                name                        = "AllowVnetOutBoundCustom"
+                priority                    = 4096
+                protocol                    = "*"
+                source_address_prefix       = "VirtualNetwork"
+                source_port_range           = "*"                      
+            }]
         }    
 
     }
@@ -287,7 +347,6 @@ locals {
             sku = "Standard"
             pip = "pip_hub_01"
             vnet = "vnet_hub"
-            #subnet = "AzureBastionSubnet"
             resource_group_name = local.rg_hub_name
         }
 
