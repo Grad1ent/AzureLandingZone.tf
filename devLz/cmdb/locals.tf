@@ -53,6 +53,25 @@ locals {
         }          
     }
 
+    #Peers
+    virtual_network_peerings = {
+
+        peer_hub_spoke_01 = {
+            name = "${var.prefix}${var.spoke_01}VnetPeer"
+            resource_group_name  = local.rg_hub_name
+            src_vnet = "vnet_hub"
+            dst_vnet = "vnet_spoke_01"
+
+        },
+        peer_spoke_01_hub = {
+            name = "${var.prefix}HubVnetPeer"
+            resource_group_name  = local.rg_spoke_01_name
+            src_vnet = "vnet_spoke_01"
+            dst_vnet = "vnet_hub"
+        }
+
+    }
+
     #NSGs
     network_security_groups = {
 
