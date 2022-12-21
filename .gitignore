@@ -1,6 +1,5 @@
 *.ps1
 *.exe
-*gitignore
 
 # Local .terraform directories
 **/.terraform/*
