@@ -1,5 +1,5 @@
 module "cmdb" {
-    source = "../../cmdb"
+    source = "../../_cmdb"
 }
 
 resource "azurerm_resource_group" "resource_groups" {
