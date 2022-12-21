@@ -22,6 +22,10 @@ output "public_ip_addresses" {
   value =  local.public_ip_addresses
 }
 
+output "bastion_hosts" {
+  value = local.bastion_hosts
+}
+
 output "tags" {
   value = local.tags
 }

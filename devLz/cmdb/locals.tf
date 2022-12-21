@@ -260,6 +260,20 @@ locals {
         }
     }
  
+    # Bastion
+    bastion_hosts = {
+
+        bas_hub = {
+            name = "${var.prefix}HubBastion"
+            sku = "Standard"
+            pip = "pip_hub_01"
+            vnet = "vnet_hub"
+            subnet = "AzureBastionSubnet"
+            resource_group_name = local.rg_hub_name
+        }
+
+    }
+
     # Tags
     tags = {
         "Data Classification"   = "Internal"
