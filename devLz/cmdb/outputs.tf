@@ -10,8 +10,8 @@ output "resoure_group_names" {
   value = local.resoure_group_names
 }
 
-output "virtual_netoworks" {
-  value = local.virtual_netoworks
+output "virtual_networks" {
+  value = local.virtual_networks
 }
 
 output "network_security_groups" {

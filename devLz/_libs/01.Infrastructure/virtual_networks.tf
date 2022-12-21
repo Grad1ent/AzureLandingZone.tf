@@ -1,6 +1,6 @@
-resource "azurerm_virtual_network" virtual_netoworks {
+resource "azurerm_virtual_network" virtual_networks {
 
-    for_each = module.cmdb.virtual_netoworks
+    for_each = module.cmdb.virtual_networks
         location = module.cmdb.region
         
         name = each.value["name"]

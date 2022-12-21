@@ -15,7 +15,7 @@ locals {
     ]
 
     # VNets
-    virtual_netoworks = {
+    virtual_networks = {
             
         vnet_hub = {
             name = "${var.prefix}HubVnet"
@@ -268,7 +268,7 @@ locals {
             sku = "Standard"
             pip = "pip_hub_01"
             vnet = "vnet_hub"
-            subnet = "AzureBastionSubnet"
+            #subnet = "AzureBastionSubnet"
             resource_group_name = local.rg_hub_name
         }
 
