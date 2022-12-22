@@ -1,9 +1,9 @@
 resource "azurerm_network_security_group" "network_security_groups"{
 
     for_each = module.cmdb.network_security_groups
-        location = module.cmdb.region
+        location            = module.cmdb.region
         
-        name = each.value["name"]
+        name                = each.value["name"]
         resource_group_name = each.value["resource_group_name"]
         
         dynamic "security_rule" {

@@ -1,4 +1,4 @@
-/* AzureBastionSubnet
+/*
 resource "azurerm_bastion_host" "bastion_hosts" {
 
     for_each = module.cmdb.bastion_hosts
