@@ -9,11 +9,11 @@ variable prefix {
 }
 
 variable spoke_01 {
-    default = "ML"
+    default = "DevOps"
     type = string
 }
 
 variable spoke_02 {
-    default = "TF"
+    default = "ML"
     type = string
 }

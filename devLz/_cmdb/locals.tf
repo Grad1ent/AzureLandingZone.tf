@@ -19,35 +19,35 @@ locals {
             
         vnet_hub = {
             name = "${var.prefix}HubVnet"
-            address_space     = ["10.100.0.0/16"]
+            address_space     = ["10.200.0.0/16"]
             resource_group_name  = local.rg_hub_name
             
             subnets = [{
                             name = "AzureBastionSubnet"
-                            address_prefix = "10.100.10.0/24"
+                            address_prefix = "10.200.10.0/24"
                             nsg = "nsg_hub_bastion"
                         },{
                             name = "${var.prefix}HubIaasSnet"
-                            address_prefix = "10.100.100.0/24"
+                            address_prefix = "10.200.100.0/24"
                             nsg = "nsg_hub_iaas"
                         },{
                             name = "${var.prefix}HubPaasSnet"
-                            address_prefix = "10.100.200.0/24"
+                            address_prefix = "10.200.200.0/24"
                             nsg = "nsg_hub_paas"
                         }]
         },
         vnet_spoke_01 = {
             name = "${var.prefix}${var.spoke_01}Vnet"
-            address_space     = ["10.200.0.0/16"]
+            address_space     = ["10.210.0.0/16"]
             resource_group_name  = local.rg_spoke_01_name
             
             subnets = [{
                             name = "${var.prefix}${var.spoke_01}IaasSnet"
-                            address_prefix = "10.200.100.0/24"
+                            address_prefix = "10.210.100.0/24"
                             nsg = "nsg_spoke_01_iaas"
                         },{
                             name = "${var.prefix}${var.spoke_01}PaasSnet"
-                            address_prefix = "10.200.200.0/24"
+                            address_prefix = "10.210.200.0/24"
                             nsg = "nsg_spoke_01_paas"
                         }]
         },          
@@ -355,7 +355,7 @@ locals {
     # Tags
     tags = {
         "Data Classification"   = "Internal"
-        "Service identifier"    = "Sample data engineering"
+        "Service identifier"    = "Massibe data engineering"
         "Service owner"         = "Wojciech Pazdzierkiewicz"
         "Technical contact"     = "wojciech@pazdzierkiewicz.pl"
         "Cost Center"           = "0000"
