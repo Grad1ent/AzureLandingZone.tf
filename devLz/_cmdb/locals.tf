@@ -4,9 +4,9 @@ locals {
     region = var.region
  
     # Resource groups
-    rg_hub_name = "${var.prefix}Hub"
-    rg_spoke_01_name = "${var.prefix}${var.spoke_01}"
-    rg_spoke_02_name = "${var.prefix}${var.spoke_02}"
+    rg_hub_name         = "${var.prefix}Hub"
+    rg_spoke_01_name    = "${var.prefix}${var.spoke_01}"
+    rg_spoke_02_name    = "${var.prefix}${var.spoke_02}"
 
     resoure_group_names = [
         local.rg_hub_name,
@@ -18,94 +18,101 @@ locals {
     virtual_networks = {
             
         vnet_hub = {
-            name = "${var.prefix}HubVnet"
-            address_space     = ["10.200.0.0/16"]
-            resource_group_name  = local.rg_hub_name
+            name                = "${var.prefix}HubVnet"
+            address_space       = ["10.200.0.0/16"]
+            resource_group_name = local.rg_hub_name
             
             subnets = [{
-                            name = "AzureBastionSubnet"
-                            address_prefix = "10.200.10.0/24"
-                            nsg = "nsg_hub_bastion"
+                            name                = "AzureBastionSubnet"
+                            address_prefix      = "10.200.10.0/24"
+                            nsg                 = "nsg_hub_bastion"
+                            service_delegation  = ""
                         },{
-                            name = "${var.prefix}HubIaasSnet"
-                            address_prefix = "10.200.100.0/24"
-                            nsg = "nsg_hub_iaas"
+                            name                = "${var.prefix}HubIaasSnet"
+                            address_prefix      = "10.200.100.0/24"
+                            nsg                 = "nsg_hub_iaas"
+                            service_delegation  = ""
                         },{
-                            name = "${var.prefix}HubPaasSnet"
-                            address_prefix = "10.200.200.0/24"
-                            nsg = "nsg_hub_paas"
+                            name                = "${var.prefix}HubPaasSnet"
+                            address_prefix      = "10.200.200.0/24"
+                            nsg                 = "nsg_hub_paas"
+                            service_delegation  = ""
                         }]
         },
         vnet_spoke_01 = {
-            name = "${var.prefix}${var.spoke_01}Vnet"
-            address_space     = ["10.210.0.0/16"]
-            resource_group_name  = local.rg_spoke_01_name
+            name                = "${var.prefix}${var.spoke_01}Vnet"
+            address_space       = ["10.210.0.0/16"]
+            resource_group_name = local.rg_spoke_01_name
             
             subnets = [{
-                            name = "${var.prefix}${var.spoke_01}IaasSnet"
-                            address_prefix = "10.210.100.0/24"
-                            nsg = "nsg_spoke_01_iaas"
+                            name                = "${var.prefix}${var.spoke_01}IaasSnet"
+                            address_prefix      = "10.210.100.0/24"
+                            nsg                 = "nsg_spoke_01_iaas"
+                            service_delegation  = ""
                         },{
-                            name = "${var.prefix}${var.spoke_01}PaasSnet"
-                            address_prefix = "10.210.200.0/24"
-                            nsg = "nsg_spoke_01_paas"
+                            name                = "${var.prefix}${var.spoke_01}PaasSnet"
+                            address_prefix      = "10.210.200.0/24"
+                            nsg                 = "nsg_spoke_01_paas"
+                            service_delegation  = ""
                         }]
         },          
         vnet_spoke_02 = {
-            name = "${var.prefix}${var.spoke_02}Vnet"
-            address_space     = ["10.220.0.0/16"]
-            resource_group_name  = local.rg_spoke_02_name
+            name                = "${var.prefix}${var.spoke_02}Vnet"
+            address_space       = ["10.220.0.0/16"]
+            resource_group_name = local.rg_spoke_02_name
             
             subnets = [{
-                            name = "${var.prefix}${var.spoke_02}IaasSnet"
-                            address_prefix = "10.220.100.0/24"
-                            nsg = "nsg_spoke_01_iaas"
+                            name                = "${var.prefix}${var.spoke_02}IaasSnet"
+                            address_prefix      = "10.220.100.0/24"
+                            nsg                 = "nsg_spoke_02_iaas"
+                            service_delegation  = "Microsoft.Databricks/workspaces"
                         },{
-                            name = "${var.prefix}${var.spoke_02}PaasSnet"
-                            address_prefix = "10.220.200.0/24"
-                            nsg = "nsg_spoke_01_paas"
+                            name                = "${var.prefix}${var.spoke_02}PaasSnet"
+                            address_prefix      = "10.220.200.0/24"
+                            nsg                 = "nsg_spoke_02_paas"
+                            service_delegation  = "Microsoft.Databricks/workspaces"
                         }]
         }          
     }
 
-    #Peers
+    # Peers
     virtual_network_peerings = {
 
         peer_hub_spoke_01 = {
-            name = "${var.prefix}${var.spoke_01}VnetPeer"
-            resource_group_name  = local.rg_hub_name
-            src_vnet = "vnet_hub"
-            dst_vnet = "vnet_spoke_01"
+            name                = "${var.prefix}${var.spoke_01}VnetPeer"
+            resource_group_name = local.rg_hub_name
+            src_vnet            = "vnet_hub"
+            dst_vnet            = "vnet_spoke_01"
 
         },
         peer_hub_spoke_02 = {
-            name = "${var.prefix}${var.spoke_02}VnetPeer"
-            resource_group_name  = local.rg_hub_name
-            src_vnet = "vnet_hub"
-            dst_vnet = "vnet_spoke_02"
+            name                = "${var.prefix}${var.spoke_02}VnetPeer"
+            resource_group_name = local.rg_hub_name
+            src_vnet            = "vnet_hub"
+            dst_vnet            = "vnet_spoke_02"
 
         },
         peer_spoke_01_hub = {
-            name = "${var.prefix}HubVnetPeer"
-            resource_group_name  = local.rg_spoke_01_name
-            src_vnet = "vnet_spoke_01"
-            dst_vnet = "vnet_hub"
+            name                = "${var.prefix}HubVnetPeer"
+            resource_group_name = local.rg_spoke_01_name
+            src_vnet            = "vnet_spoke_01"
+            dst_vnet            = "vnet_hub"
         },
         peer_spoke_02_hub = {
-            name = "${var.prefix}HubVnetPeer"
-            resource_group_name  = local.rg_spoke_02_name
-            src_vnet = "vnet_spoke_02"
-            dst_vnet = "vnet_hub"
+            name                = "${var.prefix}HubVnetPeer"
+            resource_group_name = local.rg_spoke_02_name
+            src_vnet            = "vnet_spoke_02"
+            dst_vnet            = "vnet_hub"
         }
 
     }
 
-    #NSGs
+    # NSGs
     network_security_groups = {
 
         nsg_hub_bastion = {
-            name = "${var.prefix}HubBastionSnetNsg"
-            resource_group_name  = local.rg_hub_name
+            name                = "${var.prefix}HubBastionSnetNsg"
+            resource_group_name = local.rg_hub_name
 
             security_rules = [{
                 access                      = "Allow"
@@ -230,8 +237,8 @@ locals {
             }]
         },
         nsg_hub_iaas = {
-            name = "${var.prefix}HubIaasSnetNsg"
-            resource_group_name  = local.rg_hub_name
+            name                = "${var.prefix}HubIaasSnetNsg"
+            resource_group_name = local.rg_hub_name
 
             security_rules = [{
                 access                      = "Allow"
@@ -246,8 +253,8 @@ locals {
             }]
         },
         nsg_hub_paas = {
-            name = "${var.prefix}HubPaasSnetNsg"
-            resource_group_name  = local.rg_hub_name
+            name                = "${var.prefix}HubPaasSnetNsg"
+            resource_group_name = local.rg_hub_name
 
             security_rules = [{
                 access                      = "Allow"
@@ -262,8 +269,8 @@ locals {
             }]
         },
         nsg_spoke_01_iaas = {
-            name = "${var.prefix}${var.spoke_01}IaasSnetNsg"
-            resource_group_name  = local.rg_spoke_01_name
+            name                = "${var.prefix}${var.spoke_01}IaasSnetNsg"
+            resource_group_name = local.rg_spoke_01_name
 
             security_rules = [{
                 access                      = "Allow"
@@ -278,8 +285,8 @@ locals {
             }]
         },
         nsg_spoke_01_paas = {
-            name = "${var.prefix}${var.spoke_01}PaasSnetNsg"
-            resource_group_name  = local.rg_spoke_01_name
+            name                = "${var.prefix}${var.spoke_01}PaasSnetNsg"
+            resource_group_name = local.rg_spoke_01_name
 
             security_rules = [{
                 access                      = "Allow"
@@ -294,8 +301,8 @@ locals {
             }]
         },    
         nsg_spoke_02_iaas = {
-            name = "${var.prefix}${var.spoke_02}IaasSnetNsg"
-            resource_group_name  = local.rg_spoke_02_name
+            name                = "${var.prefix}${var.spoke_02}IaasSnetNsg"
+            resource_group_name = local.rg_spoke_02_name
 
             security_rules = [{
                 access                      = "Allow"
@@ -310,8 +317,8 @@ locals {
             }]
         },
         nsg_spoke_02_paas = {
-            name = "${var.prefix}${var.spoke_02}PaasSnetNsg"
-            resource_group_name  = local.rg_spoke_02_name
+            name                = "${var.prefix}${var.spoke_02}PaasSnetNsg"
+            resource_group_name = local.rg_spoke_02_name
 
             security_rules = [{
                 access                      = "Allow"
@@ -328,13 +335,13 @@ locals {
 
     }
 
-    #PIPs
+    # PIPs
     public_ip_addresses = {
 
         pip_hub_01 = {
-            name = "${var.prefix}HubBastionPip"
-            sku = "Standard"
-            allocation_method = "Static"
+            name                = "${var.prefix}HubBastionPip"
+            sku                 = "Standard"
+            allocation_method   = "Static"
             resource_group_name = local.rg_hub_name
         }
     }
@@ -343,10 +350,10 @@ locals {
     bastion_hosts = {
 
         bas_hub = {
-            name = "${var.prefix}HubBastion"
-            sku = "Standard"
-            pip = "pip_hub_01"
-            vnet = "vnet_hub"
+            name                = "${var.prefix}HubBastion"
+            sku                 = "Standard"
+            pip                 = "pip_hub_01"
+            vnet                = "vnet_hub"
             resource_group_name = local.rg_hub_name
         }
 
@@ -360,6 +367,25 @@ locals {
         "Technical contact"     = "wojciech@pazdzierkiewicz.pl"
         "Cost Center"           = "0000"
         "Regulatory Compliance" = "N/A"
+    }
+
+
+    # Databricks
+    databricks_workspaces = {
+
+        adb_01 = {
+            name                            = "${var.prefix}${var.spoke_02}Adb"
+            sku                             = "Standard"
+            resource_group_name             = local.rg_spoke_02_name
+            managed_resource_group_name     = local.rg_spoke_02_name
+            public_network_access_enabled   = "false"
+
+            custom_parameters = [{
+                vnet                = local.virtual_networks.vnet_spoke_02.name
+                private_subnet_name = local.virtual_networks.vnet_spoke_02.subnets[0].name
+                public_subnet_name  = local.virtual_networks.vnet_spoke_02.subnets[1].name
+            }]
+        }
     }
 
 }

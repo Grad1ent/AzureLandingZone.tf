@@ -34,4 +34,6 @@ output "tags" {
   value = local.tags
 }
 
-
+output "databricks_workspaces" {
+  value = local.databricks_workspaces
+}
