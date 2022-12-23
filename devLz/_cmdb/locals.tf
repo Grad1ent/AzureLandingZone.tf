@@ -96,7 +96,7 @@ locals {
             nsg                 = "nsg_spoke_02_iaas"
             delegations         = [{
                                     name = "Microsoft.Databricks/workspaces"
-                                    actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+                                    actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action", "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"]
                                 }]
         },
         snet_spoke_02_paas = {
@@ -108,7 +108,7 @@ locals {
             nsg                 = "nsg_spoke_02_paas"
             delegations         = [{
                                     name = "Microsoft.Databricks/workspaces"
-                                    actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+                                    actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action", "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"]
                                 }]
         }
             
