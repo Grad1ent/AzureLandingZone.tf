@@ -27,3 +27,12 @@ resource "azurerm_network_security_group" "network_security_groups"{
     }
 
 }
+
+resource "azurerm_subnet_network_security_group_association" nsg_snet{
+
+    for_each = module.cmdb.subnets
+
+        subnet_id                   = azurerm_subnet.subnets[each.key].id
+        network_security_group_id   = azurerm_network_security_group.network_security_groups[each.value["nsg"]].id
+    
+}

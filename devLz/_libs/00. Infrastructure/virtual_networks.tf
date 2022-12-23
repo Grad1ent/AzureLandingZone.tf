@@ -13,7 +13,7 @@ resource "azurerm_virtual_network" virtual_networks {
             content{
                 name            = subnet.value.name
                 address_prefix  = subnet.value.address_prefix
-                security_group  = azurerm_network_security_group.network_security_groups[subnet.value.nsg].id    
+                security_group  = azurerm_network_security_group.network_security_groups[subnet.value.nsg].id
         }
         */
     lifecycle {
@@ -30,7 +30,7 @@ resource "azurerm_subnet" subnets {
 
         name                    = each.value["name"]
         address_prefixes        = each.value["address_prefixes"]
-    
+        
         dynamic "delegation" {
             for_each = each.value.delegations
         
