@@ -14,6 +14,10 @@ output "virtual_networks" {
   value = local.virtual_networks
 }
 
+output "subnets" {
+  value = local.subnets
+}
+
 output "virtual_network_peerings" {
   value = local.virtual_network_peerings
 }
