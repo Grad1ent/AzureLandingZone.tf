@@ -402,7 +402,7 @@ locals {
     # Tags
     tags = {
         "Data Classification"   = "Internal"
-        "Service identifier"    = "Massibe data engineering"
+        "Service identifier"    = "Massive data engineering"
         "Service owner"         = "Wojciech Pazdzierkiewicz"
         "Technical contact"     = "wojciech@pazdzierkiewicz.pl"
         "Cost Center"           = "0000"
