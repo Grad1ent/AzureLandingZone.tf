@@ -7,10 +7,10 @@ module "Infrastructure" {
 module "DevOps" {
     source = "./_libs/01. DevOps"
 }
-/*
+
 module "ML" {
     source = "./_libs/02. ML"
 
     virtual_networks = module.Infrastructure.virtual_networks
+    network_security_groups = module.Infrastructure.network_security_groups
 }
-*/

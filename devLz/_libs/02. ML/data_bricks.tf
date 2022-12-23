@@ -17,10 +17,10 @@ resource "azurerm_databricks_workspace" "databricks_workspaces" {
                 virtual_network_id                                      = var.virtual_networks["${custom_parameters.value.vnet}"].id
 
                 private_subnet_name                                     = custom_parameters.value.private_subnet_name
-                #private_subnet_network_security_group_association_id    = module.Infrastructure.network_security_groups["nsg_spoke_02_iaas"].id
+                private_subnet_network_security_group_association_id    = var.network_security_groups["${custom_parameters.value.private_nsg}"].id
 
                 public_subnet_name                                      = custom_parameters.value.public_subnet_name
-                #public_subnet_network_security_group_association_id     = module.Infrastructure.network_security_groups["nsg_spoke_02_paas"].id
+                public_subnet_network_security_group_association_id     = var.network_security_groups["${custom_parameters.value.public_nsg}"].id
             }
         }
 

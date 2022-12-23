@@ -4,14 +4,16 @@ locals {
     region = var.region
  
     # Resource groups
-    rg_hub_name         = "${var.prefix}Hub"
-    rg_spoke_01_name    = "${var.prefix}${var.spoke_01}"
-    rg_spoke_02_name    = "${var.prefix}${var.spoke_02}"
+    rg_hub_name             = "${var.prefix}Hub"
+    rg_spoke_01_name        = "${var.prefix}${var.spoke_01}"
+    rg_spoke_02_name        = "${var.prefix}${var.spoke_02}"
+    rg_spoke_02_name_tmp    = "${var.prefix}${var.spoke_02}tmp"
 
     resoure_group_names = [
         local.rg_hub_name,
         local.rg_spoke_01_name,
-        local.rg_spoke_02_name
+        local.rg_spoke_02_name,
+        local.rg_spoke_02_name_tmp
     ]
 
     # VNets
@@ -415,8 +417,8 @@ locals {
             name                            = "${var.prefix}${var.spoke_02}Adb"
             sku                             = "standard"
             resource_group_name             = local.rg_spoke_02_name
-            managed_resource_group_name     = local.rg_spoke_02_name
-            public_network_access_enabled   = "false"
+            managed_resource_group_name     = local.rg_spoke_02_name_tmp
+            public_network_access_enabled   = "true"
 
             custom_parameters = [{
                 vnet                = "vnet_spoke_02"
@@ -424,8 +426,8 @@ locals {
                 private_subnet_name = local.subnets.snet_spoke_02_iaas.name
                 public_subnet_name = local.subnets.snet_spoke_02_paas.name
                 
-                #private_nsg    = local.network_security_groups.nsg_spoke_02_iaas
-                #public_nsg     = local.network_security_groups.nsg_spoke_02_paas
+                private_nsg    = "nsg_spoke_02_iaas"
+                public_nsg     = "nsg_spoke_02_paas"
             }]
         }
     }
