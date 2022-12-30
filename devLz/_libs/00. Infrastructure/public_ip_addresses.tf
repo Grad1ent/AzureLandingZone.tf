@@ -7,6 +7,8 @@ resource "azurerm_public_ip" "public_ip_addresses" {
         sku                 = each.value["sku"]
         allocation_method   = each.value["allocation_method"]
         resource_group_name = each.value["resource_group_name"]
+
+        depends_on = [azurerm_resource_group.resource_groups]
         
     lifecycle {
         ignore_changes = [tags]

@@ -22,6 +22,8 @@ resource "azurerm_network_security_group" "network_security_groups"{
             }
         }
 
+        depends_on = [azurerm_resource_group.resource_groups]
+
     lifecycle {
         ignore_changes = [tags]
     }
@@ -34,5 +36,7 @@ resource "azurerm_subnet_network_security_group_association" nsg_snet{
 
         subnet_id                   = azurerm_subnet.subnets[each.key].id
         network_security_group_id   = azurerm_network_security_group.network_security_groups[each.value["nsg"]].id
+
+        depends_on = [azurerm_network_security_group.network_security_groups,azurerm_subnet.subnets]
     
 }

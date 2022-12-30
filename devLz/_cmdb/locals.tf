@@ -3,8 +3,18 @@ locals {
     prefix = var.prefix
     region = var.region
  
+   # Tags
+    tags = {
+        "Data Classification"   = "Internal"
+        "Service identifier"    = "Massive data engineering"
+        "Service owner"         = "Wojciech Pazdzierkiewicz"
+        "Technical contact"     = "wojciech@pazdzierkiewicz.pl"
+        "Cost Center"           = "0000"
+        "Regulatory Compliance" = "N/A"
+    }
+
     # Resource groups
-    rg_hub_name             = "${var.prefix}Hub"
+    rg_hub_name             = "${var.prefix}${var.hub}"
     rg_spoke_01_name        = "${var.prefix}${var.spoke_01}"
     rg_spoke_02_name        = "${var.prefix}${var.spoke_02}"
     rg_spoke_02_name_tmp    = "${var.prefix}${var.spoke_02}tmp"
@@ -20,7 +30,7 @@ locals {
     virtual_networks = {
             
         vnet_hub = {
-            name                = "${var.prefix}HubVnet"
+            name                = "${var.prefix}${var.hub}Vnet"
             address_space       = ["10.200.0.0/16"]
             resource_group_name = local.rg_hub_name            
         },
@@ -53,7 +63,7 @@ locals {
             virtual_network_name    = local.virtual_networks.vnet_hub.name
             resource_group_name     = local.virtual_networks.vnet_hub.resource_group_name
 
-            name                = "${var.prefix}HubIaasSnet"
+            name                = "${var.prefix}${var.hub}IaasSnet"
             address_prefixes    = ["10.200.100.0/24"]
             nsg                 = "nsg_hub_iaas"
             delegations         = []
@@ -62,7 +72,7 @@ locals {
             virtual_network_name    = local.virtual_networks.vnet_hub.name
             resource_group_name     = local.virtual_networks.vnet_hub.resource_group_name
 
-            name                = "${var.prefix}HubPaasSnet"
+            name                = "${var.prefix}${var.hub}PaasSnet"
             address_prefixes    = ["10.200.200.0/24"]
             nsg                 = "nsg_hub_paas"
             delegations         = []
@@ -150,13 +160,13 @@ locals {
 
         },
         peer_spoke_01_hub = {
-            name                = "${var.prefix}HubVnetPeer"
+            name                = "${var.prefix}${var.hub}VnetPeer"
             resource_group_name = local.rg_spoke_01_name
             src_vnet            = "vnet_spoke_01"
             dst_vnet            = "vnet_hub"
         },
         peer_spoke_02_hub = {
-            name                = "${var.prefix}HubVnetPeer"
+            name                = "${var.prefix}${var.hub}VnetPeer"
             resource_group_name = local.rg_spoke_02_name
             src_vnet            = "vnet_spoke_02"
             dst_vnet            = "vnet_hub"
@@ -169,7 +179,7 @@ locals {
 
         #Hub
         nsg_hub_bastion = {
-            name                = "${var.prefix}HubBastionSnetNsg"
+            name                = "${var.prefix}${var.hub}BastionSnetNsg"
             resource_group_name = local.rg_hub_name
 
             security_rules = [{
@@ -295,7 +305,7 @@ locals {
             }]
         },
         nsg_hub_iaas = {
-            name                = "${var.prefix}HubIaasSnetNsg"
+            name                = "${var.prefix}${var.hub}IaasSnetNsg"
             resource_group_name = local.rg_hub_name
 
             security_rules = [{
@@ -311,7 +321,7 @@ locals {
             }]
         },
         nsg_hub_paas = {
-            name                = "${var.prefix}HubPaasSnetNsg"
+            name                = "${var.prefix}${var.hub}PaasSnetNsg"
             resource_group_name = local.rg_hub_name
 
             security_rules = [{
@@ -603,7 +613,7 @@ locals {
     public_ip_addresses = {
 
         pip_hub_01 = {
-            name                = "${var.prefix}HubBastionPip"
+            name                = "${var.prefix}${var.hub}BastionPip"
             sku                 = "Standard"
             allocation_method   = "Static"
             resource_group_name = local.rg_hub_name
@@ -614,7 +624,7 @@ locals {
     bastion_hosts = {
 
         bas_hub = {
-            name                = "${var.prefix}HubBastion"
+            name                = "${var.prefix}${var.hub}Bastion"
             sku                 = "Standard"
             pip                 = "pip_hub_01"
             #vnet                = "vnet_hub"
@@ -623,17 +633,6 @@ locals {
         }
 
     }
-
-    # Tags
-    tags = {
-        "Data Classification"   = "Internal"
-        "Service identifier"    = "Massive data engineering"
-        "Service owner"         = "Wojciech Pazdzierkiewicz"
-        "Technical contact"     = "wojciech@pazdzierkiewicz.pl"
-        "Cost Center"           = "0000"
-        "Regulatory Compliance" = "N/A"
-    }
-
 
     # Databricks
     databricks_workspaces = {

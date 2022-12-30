@@ -6,16 +6,9 @@ resource "azurerm_virtual_network" virtual_networks {
         name                = each.value["name"]
         address_space       = each.value["address_space"]
         resource_group_name = each.value["resource_group_name"]
-        /*
-        dynamic "subnet" {
-        
-            for_each = each.value.subnets
-            content{
-                name            = subnet.value.name
-                address_prefix  = subnet.value.address_prefix
-                security_group  = azurerm_network_security_group.network_security_groups[subnet.value.nsg].id
-        }
-        */
+    
+        depends_on = [azurerm_resource_group.resource_groups]
+
     lifecycle {
         ignore_changes = [tags]
     }
@@ -31,6 +24,8 @@ resource "azurerm_virtual_network_peering" "virtual_network_peerings" {
 
         virtual_network_name        = azurerm_virtual_network.virtual_networks[each.value["src_vnet"]].name
         remote_virtual_network_id   = azurerm_virtual_network.virtual_networks[each.value["dst_vnet"]].id
+
+        depends_on = [azurerm_virtual_network.virtual_networks]
 
 }
 
@@ -54,5 +49,7 @@ resource "azurerm_subnet" subnets {
                 }        
             }
         }
+
+        depends_on = [azurerm_virtual_network.virtual_networks]
 
 }

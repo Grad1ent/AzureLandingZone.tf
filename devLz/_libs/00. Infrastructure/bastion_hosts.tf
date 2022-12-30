@@ -1,4 +1,4 @@
-#/*
+/*
 resource "azurerm_bastion_host" "bastion_hosts" {
 
     for_each = var.bastion_hosts
@@ -14,10 +14,12 @@ resource "azurerm_bastion_host" "bastion_hosts" {
             subnet_id            = azurerm_subnet.subnets[each.value["snet"]].id
             public_ip_address_id = azurerm_public_ip.public_ip_addresses[each.value["pip"]].id
         }
-        
+
+        depends_on = [azurerm_resource_group.resource_groups,azurerm_subnet.subnets,azurerm_public_ip.public_ip_addresses]
+
     lifecycle {
         ignore_changes = [tags]
     }  
 
 }
-#*/
+*/

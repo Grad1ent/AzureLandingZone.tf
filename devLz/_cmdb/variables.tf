@@ -4,7 +4,12 @@ variable region {
 }
 
 variable prefix {
-    default = "prd"
+    default = "uat"
+    type = string
+}
+
+variable hub {
+    default = "Hub"
     type = string
 }
 
