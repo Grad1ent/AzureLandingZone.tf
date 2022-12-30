@@ -613,10 +613,11 @@ locals {
     public_ip_addresses = {
 
         pip_hub_01 = {
-            name                = "${var.prefix}${var.hub}BastionPip"
-            sku                 = "Standard"
-            allocation_method   = "Static"
-            resource_group_name = local.rg_hub_name
+            name                    = "${var.prefix}${var.hub}BastionPip"
+            sku                     = "Standard"
+            allocation_method       = "Static"
+            ddos_protection_mode    = "VirtualNetworkInherited"
+            resource_group_name     = local.rg_hub_name
         }
     }
  
