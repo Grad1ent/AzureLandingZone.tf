@@ -644,14 +644,14 @@ locals {
             managed_resource_group_name     = local.rg_spoke_02_name_tmp
             public_network_access_enabled   = "true"
 
-            custom_parameters = [{
+            parameters = [{
                 vnet                = "vnet_spoke_02"
 
-                private_subnet_name = local.subnets.snet_spoke_02_iaas.name
-                public_subnet_name = local.subnets.snet_spoke_02_paas.name
+                private_subnet_name = local.subnets.snet_spoke_02_adb_private.name
+                public_subnet_name  = local.subnets.snet_spoke_02_adb_public.name
                 
-                private_nsg    = "nsg_spoke_02_iaas"
-                public_nsg     = "nsg_spoke_02_paas"
+                private_nsg         = "nsg_spoke_02_adb_private"
+                public_nsg          = "nsg_spoke_02_adb_public"
             }]
         }
     }
