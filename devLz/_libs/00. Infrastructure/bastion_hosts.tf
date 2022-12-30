@@ -1,8 +1,8 @@
-/*
+#/*
 resource "azurerm_bastion_host" "bastion_hosts" {
 
-    for_each = module.cmdb.bastion_hosts
-        location            = module.cmdb.region
+    for_each = var.bastion_hosts
+        location            = var.region
         
         name                = each.value["name"]
         sku                 = each.value["sku"]
@@ -20,4 +20,4 @@ resource "azurerm_bastion_host" "bastion_hosts" {
     }  
 
 }
-*/
+#*/

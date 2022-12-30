@@ -1,7 +1,7 @@
 resource "azurerm_network_security_group" "network_security_groups"{
 
-    for_each = module.cmdb.network_security_groups
-        location            = module.cmdb.region
+    for_each = var.network_security_groups
+        location            = var.region
         
         name                = each.value["name"]
         resource_group_name = each.value["resource_group_name"]
@@ -30,7 +30,7 @@ resource "azurerm_network_security_group" "network_security_groups"{
 
 resource "azurerm_subnet_network_security_group_association" nsg_snet{
 
-    for_each = module.cmdb.subnets
+    for_each = var.subnets
 
         subnet_id                   = azurerm_subnet.subnets[each.key].id
         network_security_group_id   = azurerm_network_security_group.network_security_groups[each.value["nsg"]].id

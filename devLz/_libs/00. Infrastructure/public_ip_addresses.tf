@@ -1,7 +1,7 @@
 resource "azurerm_public_ip" "public_ip_addresses" {
 
-    for_each = module.cmdb.public_ip_addresses
-        location            = module.cmdb.region
+    for_each = var.public_ip_addresses
+        location            = var.region
         
         name                = each.value["name"]
         sku                 = each.value["sku"]

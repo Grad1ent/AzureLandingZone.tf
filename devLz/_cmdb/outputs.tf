@@ -6,8 +6,8 @@ output "region" {
   value = local.region
 }
 
-output "resoure_group_names" {
-  value = local.resoure_group_names
+output "resource_group_names" {
+  value = local.resource_group_names
 }
 
 output "virtual_networks" {

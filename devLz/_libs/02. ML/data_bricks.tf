@@ -1,8 +1,8 @@
 #/*
 resource "azurerm_databricks_workspace" "databricks_workspaces" {
 
-    for_each = module.cmdb.databricks_workspaces
-        location                        = module.cmdb.region
+    for_each = var.databricks_workspaces
+        location                        = var.region
         
         name                            = each.value["name"]
         sku                             = each.value["sku"]
