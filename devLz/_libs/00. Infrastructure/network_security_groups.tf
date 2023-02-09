@@ -25,7 +25,7 @@ resource "azurerm_network_security_group" "network_security_groups"{
         depends_on = [azurerm_resource_group.resource_groups]
 
     lifecycle {
-        ignore_changes = [tags]
+        ignore_changes = [tags, security_rule]
     }
 
 }

@@ -1,4 +1,4 @@
-
+#/*
 resource "azurerm_databricks_workspace" "databricks_workspaces" {
 
     for_each = var.databricks_workspaces
@@ -29,3 +29,4 @@ resource "azurerm_databricks_workspace" "databricks_workspaces" {
     }  
 
 }
+#*/

@@ -380,6 +380,19 @@ locals {
                 access                      = "Allow"
                 destination_address_prefix  = "VirtualNetwork"
                 destination_port_range      = "*"
+                direction                   = "Outbound"
+                name                        = "AllowVnetOutBoundCustom"
+                priority                    = 4096
+                protocol                    = "*"
+                source_address_prefix       = "VirtualNetwork"
+                source_port_range           = "*"                      
+            }]
+
+            /*
+            security_rules = [{
+                access                      = "Allow"
+                destination_address_prefix  = "VirtualNetwork"
+                destination_port_range      = "*"
                 direction                   = "Inbound"
                 name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-worker-inbound"
                 description                 = "Required for worker nodes communication within a cluster."
@@ -472,12 +485,26 @@ locals {
                 source_address_prefix       = "VirtualNetwork"
                 source_port_range           = "*"                      
             }]
+        */
         },
         nsg_spoke_02_adb_public = {
             name                = "${var.prefix}${var.spoke_02}AdbPublicSnetNsg"
             resource_group_name = local.rg_spoke_02_name
 
-             security_rules = [{
+            security_rules = [{
+                access                      = "Allow"
+                destination_address_prefix  = "VirtualNetwork"
+                destination_port_range      = "*"
+                direction                   = "Outbound"
+                name                        = "AllowVnetOutBoundCustom"
+                priority                    = 4096
+                protocol                    = "*"
+                source_address_prefix       = "VirtualNetwork"
+                source_port_range           = "*"                      
+            }]
+            
+            /*
+            security_rules = [{
                 access                      = "Allow"
                 destination_address_prefix  = "VirtualNetwork"
                 destination_port_range      = "*"
@@ -573,6 +600,7 @@ locals {
                 source_address_prefix       = "VirtualNetwork"
                 source_port_range           = "*"                      
             }]
+        */
         },
         nsg_spoke_02_iaas = {
             name                = "${var.prefix}${var.spoke_02}IaasSnetNsg"
