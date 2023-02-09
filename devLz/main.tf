@@ -28,6 +28,6 @@ module "ML" {
 
     region                      = module.cmdb.region
     virtual_networks            = module.Infrastructure.virtual_networks
-    network_security_groups     = module.Infrastructure.network_security_groups
+    subnets                     = module.Infrastructure.subnets
     databricks_workspaces       = module.cmdb.databricks_workspaces
 }

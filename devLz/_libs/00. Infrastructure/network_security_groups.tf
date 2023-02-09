@@ -37,6 +37,6 @@ resource "azurerm_subnet_network_security_group_association" nsg_snet{
         subnet_id                   = azurerm_subnet.subnets[each.key].id
         network_security_group_id   = azurerm_network_security_group.network_security_groups[each.value["nsg"]].id
 
-        depends_on = [azurerm_network_security_group.network_security_groups,azurerm_subnet.subnets]
+        depends_on = [azurerm_subnet.subnets, azurerm_network_security_group.network_security_groups]
     
 }

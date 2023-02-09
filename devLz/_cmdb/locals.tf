@@ -17,13 +17,13 @@ locals {
     rg_hub_name             = "${var.prefix}${var.hub}"
     rg_spoke_01_name        = "${var.prefix}${var.spoke_01}"
     rg_spoke_02_name        = "${var.prefix}${var.spoke_02}"
-    rg_spoke_02_name_tmp    = "${var.prefix}${var.spoke_02}tmp"
+    #rg_spoke_02_name_tmp    = "${var.prefix}${var.spoke_02}tmp"
 
     resource_group_names = [
         local.rg_hub_name,
         local.rg_spoke_01_name,
         local.rg_spoke_02_name,
-        local.rg_spoke_02_name_tmp
+        #local.rg_spoke_02_name_tmp
     ]
 
     # VNets
@@ -642,17 +642,17 @@ locals {
             name                            = "${var.prefix}${var.spoke_02}Adb"
             sku                             = "standard"
             resource_group_name             = local.rg_spoke_02_name
-            managed_resource_group_name     = local.rg_spoke_02_name_tmp
+            managed_resource_group_name     = "${local.rg_spoke_02_name}tmp"
             public_network_access_enabled   = "true"
 
-            parameters = [{
+            custom_parameters = [{
                 vnet                = "vnet_spoke_02"
-
+                private_subnet      = "snet_spoke_02_adb_private"
+                public_subnet       = "snet_spoke_02_adb_public"
+                
                 private_subnet_name = local.subnets.snet_spoke_02_adb_private.name
                 public_subnet_name  = local.subnets.snet_spoke_02_adb_public.name
                 
-                private_nsg         = "nsg_spoke_02_adb_private"
-                public_nsg          = "nsg_spoke_02_adb_public"
             }]
         }
     }
