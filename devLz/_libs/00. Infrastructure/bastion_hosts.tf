@@ -1,4 +1,4 @@
-#/*
+/*
 resource "azurerm_bastion_host" "bastion_hosts" {
 
     for_each = var.bastion_hosts
@@ -22,4 +22,4 @@ resource "azurerm_bastion_host" "bastion_hosts" {
     }  
 
 }
-#*/
+*/
