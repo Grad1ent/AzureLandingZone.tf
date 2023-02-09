@@ -15,6 +15,8 @@ module "Infrastructure" {
     subnets                     = module.cmdb.subnets
     network_security_groups     = module.cmdb.network_security_groups
     public_ip_addresses         = module.cmdb.public_ip_addresses
+    virtual_machines            = module.cmdb.virtual_machines
+    network_interface_cards     = module.cmdb.network_interface_cards
     tags                        = module.cmdb.tags
 
 }

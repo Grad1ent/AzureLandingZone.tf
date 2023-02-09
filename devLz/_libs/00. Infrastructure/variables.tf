@@ -6,4 +6,6 @@ variable "resource_group_names" {}
 variable "virtual_network_peerings" {}
 variable "virtual_networks" {}
 variable "subnets" {}
+variable "virtual_machines" {}
+variable "network_interface_cards" {}
 variable "tags" {}

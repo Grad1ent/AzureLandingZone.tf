@@ -17,13 +17,11 @@ locals {
     rg_hub_name             = "${var.prefix}${var.hub}"
     rg_spoke_01_name        = "${var.prefix}${var.spoke_01}"
     rg_spoke_02_name        = "${var.prefix}${var.spoke_02}"
-    #rg_spoke_02_name_tmp    = "${var.prefix}${var.spoke_02}tmp"
 
     resource_group_names = [
         local.rg_hub_name,
         local.rg_spoke_01_name,
         local.rg_spoke_02_name,
-        #local.rg_spoke_02_name_tmp
     ]
 
     # VNets
@@ -486,5 +484,57 @@ locals {
             }]
         }
     }
+
+    # Network interace cards
+    network_interface_cards = {
+
+        nic_01 = {
+            name                            = "${var.prefix}${var.spoke_01}Nic"
+            resource_group_name             = local.rg_spoke_01_name
+
+            ip_configuration = [{
+                name                          = "ipconfig1"
+                subnet                        = "snet_spoke_01_iaas"
+                private_ip_address_allocation = "Dynamic"
+            }]
+        }
+    }
+    
+    # Virtual machines
+    virtual_machines = {
+
+        vm_01 = {
+            name                            = "${var.prefix}${var.spoke_01}Vm"
+            vm_size                         = "Standard_B2ms"
+            network_interface               = "nic_01"
+
+            resource_group_name             = local.rg_spoke_01_name
+            
+            storage_image_reference = [{
+                publisher           = "Canonical"
+                offer               = "0001-com-ubuntu-server-focal"
+                sku                 = "20_04-lts-gen2"
+                version             = "latest"
+            }]
+
+            storage_os_disk = [{
+                name                = "${var.prefix}${var.spoke_01}VmOsDisk"
+                caching             = "ReadWrite"
+                create_option       = "FromImage"
+                managed_disk_type   = "Standard_LRS"
+            }]
+
+            os_profile = [{
+                computer_name       = "devopshost"
+                admin_username      = "devadmin"
+                admin_password      = "devP@ssw0rd"
+            }]
+
+            os_profile_linux_config = [{
+                disable_password_authentication = "false"
+            }]
+
+        }
+    }     
 
 }
