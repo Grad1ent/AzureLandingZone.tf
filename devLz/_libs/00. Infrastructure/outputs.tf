@@ -1,7 +1,7 @@
-output "virtual_networks" {
-  value = azurerm_virtual_network.virtual_networks
+output "virtual_machines" {
+  value = azurerm_virtual_machine.virtual_machines
 }
 
-output "subnets" {
-  value = azurerm_subnet.subnets
+output "databricks_workspaces" {
+  value = azurerm_databricks_workspace.databricks_workspaces
 }
