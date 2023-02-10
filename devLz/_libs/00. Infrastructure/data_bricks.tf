@@ -14,16 +14,13 @@ resource "azurerm_databricks_workspace" "databricks_workspaces" {
         
             for_each = each.value.custom_parameters
             content{
-                #virtual_network_id                                      = var.virtual_networks["${custom_parameters.value.vnet}"].id
                 virtual_network_id                                      = azurerm_virtual_network.virtual_networks["${custom_parameters.value.vnet}"].id
 
                 private_subnet_name                                     = custom_parameters.value.private_subnet_name
-                #private_subnet_network_security_group_association_id    = var.subnets["${custom_parameters.value.private_subnet}"].id
                 private_subnet_network_security_group_association_id    = azurerm_subnet.subnets["${custom_parameters.value.private_subnet}"].id
                         
                 public_subnet_name                                      = custom_parameters.value.public_subnet_name
-                #public_subnet_network_security_group_association_id    = var.subnets["${custom_parameters.value.public_subnet}"].id
-                public_subnet_network_security_group_association_id    = azurerm_subnet.subnets["${custom_parameters.value.public_subnet}"].id
+                public_subnet_network_security_group_association_id     = azurerm_subnet.subnets["${custom_parameters.value.public_subnet}"].id
             }
         }
 
