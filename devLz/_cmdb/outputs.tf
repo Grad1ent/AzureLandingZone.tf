@@ -38,10 +38,6 @@ output "bastion_hosts" {
   value = local.bastion_hosts
 }
 
-output "databricks_workspaces" {
-  value = local.databricks_workspaces
-}
-
 output "network_interface_cards" {
  value = local.network_interface_cards
 }
@@ -50,3 +46,6 @@ output "virtual_machines" {
   value = local.virtual_machines
 }
 
+output "databricks_workspaces" {
+  value = local.databricks_workspaces
+}

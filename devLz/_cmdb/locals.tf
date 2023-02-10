@@ -463,28 +463,6 @@ locals {
 
     }
 
-    # Databricks
-    databricks_workspaces = {
-
-        adb_01 = {
-            name                            = "${var.prefix}${var.spoke_02}Adb"
-            sku                             = "standard"
-            resource_group_name             = local.rg_spoke_02_name
-            managed_resource_group_name     = "${local.rg_spoke_02_name}tmp"
-            public_network_access_enabled   = "true"
-
-            custom_parameters = [{
-                vnet                = "vnet_spoke_02"
-                private_subnet      = "snet_spoke_02_adb_private"
-                public_subnet       = "snet_spoke_02_adb_public"
-                
-                private_subnet_name = local.subnets.snet_spoke_02_adb_private.name
-                public_subnet_name  = local.subnets.snet_spoke_02_adb_public.name
-                
-            }]
-        }
-    }
-
     # Network interace cards
     network_interface_cards = {
 
@@ -537,4 +515,26 @@ locals {
         }
     }     
 
+    # Databricks
+    databricks_workspaces = {
+
+        adb_01 = {
+            name                            = "${var.prefix}${var.spoke_02}Adb"
+            sku                             = "standard"
+            resource_group_name             = local.rg_spoke_02_name
+            managed_resource_group_name     = "${local.rg_spoke_02_name}tmp"
+            public_network_access_enabled   = "true"
+
+            custom_parameters = [{
+                vnet                = "vnet_spoke_02"
+                private_subnet      = "snet_spoke_02_adb_private"
+                public_subnet       = "snet_spoke_02_adb_public"
+                
+                private_subnet_name = local.subnets.snet_spoke_02_adb_private.name
+                public_subnet_name  = local.subnets.snet_spoke_02_adb_public.name
+                
+            }]
+        }
+    }
+    
 }
