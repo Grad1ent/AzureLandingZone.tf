@@ -6,10 +6,10 @@ resource "azurerm_machine_learning_workspace" "machine_learning_workspaces" {
         
         name                            = each.value["name"]
         resource_group_name             = each.value["resource_group_name"]
-        application_insights_id         = azurerm_application_insights.application_insights["${each.value.application_insights}"].id
-        container_registry_id           = azurerm_container_registry.container_registries["${each.value.container_registry}"].id
-        storage_account_id              = azurerm_storage_account.storage_accounts["${each.value.storage_account}"].id
-        key_vault_id                    = azurerm_key_vault.key_vaults["${each.value.key_vault}"].id
+        application_insights_id         = azurerm_application_insights.application_insights["${each.value["application_insights"]}"].id
+        container_registry_id           = azurerm_container_registry.container_registries["${each.value["container_registry"]}"].id
+        storage_account_id              = azurerm_storage_account.storage_accounts["${each.value["storage_account"]}"].id
+        key_vault_id                    = azurerm_key_vault.key_vaults["${each.value["key_vault"]}"].id
         public_network_access_enabled   = each.value["public_network_access_enabled"]
         
         identity {

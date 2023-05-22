@@ -551,7 +551,7 @@ locals {
     storage_accounts = {
 
         storage_account_02 = {
-            name                            = "${var.prefix}${var.spoke_02}st"
+            name                            = lower("${var.prefix}${var.spoke_02}st")
             resource_group_name             = local.rg_spoke_02_name
             account_tier                    = "Standard"
             account_replication_type        = "GRS"
@@ -586,10 +586,10 @@ locals {
         aml_01 = {
             name                            = "${var.prefix}${var.spoke_02}Aml"
             resource_group_name             = local.rg_spoke_02_name
-            application_insights            = local.application_insights.application_insights_02
-            container_registry              = local.container_registries.container_registry_02
-            storage_account                 = local.storage_accounts.storage_account_02
-            key_vault                       = local.key_vaults.key_vault_02
+            application_insights            = "application_insights_02"
+            container_registry              = "container_registry_02"
+            storage_account                 = "storage_account_02"
+            key_vault                       = "key_vault_02"
             public_network_access_enabled   = "true"
         }
 
