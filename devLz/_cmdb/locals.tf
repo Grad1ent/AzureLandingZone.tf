@@ -515,6 +515,49 @@ locals {
         }
     }     
 
+    # Application insights
+    application_insights = {
+
+        application_insights_02 = {
+            name                            = "${var.prefix}${var.spoke_02}AppIn"
+            application_type                = "web"
+            resource_group_name             = local.rg_spoke_02_name
+        }
+    }
+
+    # Container registries
+    container_registries = {
+
+        container_registry_02 = {
+            name                            = "${var.prefix}${var.spoke_02}CReg"
+            sku                             = "Standard"
+            resource_group_name             = local.rg_spoke_02_name
+            admin_enabled                   = "true"
+        }
+    }
+
+    # Key vaults
+    key_vaults = {
+
+        key_vault_02 = {
+            name                            = "${var.prefix}${var.spoke_02}KV"
+            sku_name                        = "standard"
+            resource_group_name             = local.rg_spoke_02_name
+            purge_protection_enabled        = "false"
+        }
+    }
+
+    # Storage accounts
+    storage_accounts = {
+
+        storage_account_02 = {
+            name                            = "${var.prefix}${var.spoke_02}st"
+            resource_group_name             = local.rg_spoke_02_name
+            account_tier                    = "Standard"
+            account_replication_type        = "GRS"
+        }
+    }
+
     # Databricks
     databricks_workspaces = {
 
@@ -535,6 +578,21 @@ locals {
                 
             }]
         }
+    }
+
+    #Azure MLs
+    machine_learning_workspaces = {
+
+        aml_01 = {
+            name                            = "${var.prefix}${var.spoke_02}Aml"
+            resource_group_name             = local.rg_spoke_02_name
+            application_insights            = local.application_insights.application_insights_02
+            container_registry              = local.container_registries.container_registry_02
+            storage_account                 = local.storage_accounts.storage_account_02
+            key_vault                       = local.key_vaults.key_vault_02
+            public_network_access_enabled   = "true"
+        }
+
     }
     
 }

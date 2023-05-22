@@ -1,2 +1,2 @@
 variable "databricks_workspaces" {}
-variable "configuration" {}
+variable "machine_learning_workspaces" {}

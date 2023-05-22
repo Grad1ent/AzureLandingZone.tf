@@ -46,6 +46,26 @@ output "virtual_machines" {
   value = local.virtual_machines
 }
 
+output "application_insights" {
+  value = local.application_insights
+}
+
+output "container_registries" {
+  value = local.container_registries
+}
+
+output "key_vaults" {
+  value = local.key_vaults
+}
+
+output "storage_accounts" {
+  value = local.storage_accounts
+}
+
 output "databricks_workspaces" {
   value = local.databricks_workspaces
+}
+
+output "machine_learning_workspaces" {
+  value = local.machine_learning_workspaces
 }
