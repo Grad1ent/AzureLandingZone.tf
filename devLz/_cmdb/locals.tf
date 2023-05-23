@@ -437,6 +437,132 @@ locals {
 
     }
 
+    #Private DNS zones
+    private_dns_zones = {
+
+        dns_01 = {
+            name                            = "privatelink.file.core.windows.net"
+            resource_group_name             = local.rg_spoke_02_name
+            vnet                            = "vnet_spoke_02"
+            vnet_link_name                  = "${var.prefix}${var.spoke_02}FileDnsLink"
+        },
+        dns_02 = {
+            name                            = "privatelink.blob.core.windows.net"
+            resource_group_name             = local.rg_spoke_02_name
+            vnet                            = "vnet_spoke_02"
+            vnet_link_name                  = "${var.prefix}${var.spoke_02}BlobDnsLink"
+        },
+        dns_03 = {
+            name                            = "privatelink.vaultcore.azure.net"
+            resource_group_name             = local.rg_spoke_02_name
+            vnet                            = "vnet_spoke_02"
+            vnet_link_name                  = "${var.prefix}${var.spoke_02}KvDnsLink"
+        },
+        dns_04 = {
+            name                            = "privatelink.azurecr.io"
+            resource_group_name             = local.rg_spoke_02_name
+            vnet                            = "vnet_spoke_02"
+            vnet_link_name                  = "${var.prefix}${var.spoke_02}CregDnsLink"
+        },
+        dns_05 = {
+            name                            = "privatelink.api.azureml.ms"
+            resource_group_name             = local.rg_spoke_02_name
+            vnet                            = "vnet_spoke_02"
+            vnet_link_name                  = "${var.prefix}${var.spoke_02}AmlDnsLink"
+        }
+    }
+
+    # Private endpoints
+    private_endpoints_st_file = {
+
+        pep_02 = {
+            name                            = "${var.prefix}${var.spoke_02}StFilePep"
+            resource_group_name             = local.rg_spoke_02_name
+            subnet                          = "snet_spoke_02_paas"
+
+            psc_name                        = "${var.prefix}${var.spoke_02}StFilePsc"
+            psc_resource                    = "storage_account_02"
+            psc_subresource_names           = ["file"]
+            psc_is_manual_connection        = "false"
+
+            dns_group_name                  = "${var.prefix}${var.spoke_02}StFileDns"
+            dns_zone                        = "dns_01"
+        }
+
+    }
+
+    private_endpoints_st_blob = {
+
+        pep_02 = {
+            name                            = "${var.prefix}${var.spoke_02}StBlobPep"
+            resource_group_name             = local.rg_spoke_02_name
+            subnet                          = "snet_spoke_02_paas"
+
+            psc_name                        = "${var.prefix}${var.spoke_02}StBlobPsc"
+            psc_resource                    = "storage_account_02"
+            psc_subresource_names           = ["blob"]
+            psc_is_manual_connection        = "false"
+
+            dns_group_name                  = "${var.prefix}${var.spoke_02}StBlobDns"
+            dns_zone                        = "dns_02"
+        }
+
+    }
+
+    private_endpoints_kv = {
+
+        pep_02 = {
+            name                            = "${var.prefix}${var.spoke_02}KvPep"
+            resource_group_name             = local.rg_spoke_02_name
+            subnet                          = "snet_spoke_02_paas"
+
+            psc_name                        = "${var.prefix}${var.spoke_02}KvPsc"
+            psc_resource                    = "key_vault_02"
+            psc_subresource_names           = ["vault"]
+            psc_is_manual_connection        = "false"
+
+            dns_group_name                  = "${var.prefix}${var.spoke_02}KvDns"
+            dns_zone                        = "dns_03"
+        }
+
+    }
+
+    private_endpoints_creg = {
+
+        pep_02 = {
+            name                            = "${var.prefix}${var.spoke_02}CregPep"
+            resource_group_name             = local.rg_spoke_02_name
+            subnet                          = "snet_spoke_02_paas"
+
+            psc_name                        = "${var.prefix}${var.spoke_02}CregPsc"
+            psc_resource                    = "container_registry_02"
+            psc_subresource_names           = ["registry"]
+            psc_is_manual_connection        = "false"
+
+            dns_group_name                  = "${var.prefix}${var.spoke_02}CregDns"
+            dns_zone                        = "dns_04"
+        }
+
+    }
+
+    private_endpoints_aml = {
+
+        pep_02 = {
+            name                            = "${var.prefix}${var.spoke_02}AmlPep"
+            resource_group_name             = local.rg_spoke_02_name
+            subnet                          = "snet_spoke_02_paas"
+
+            psc_name                        = "${var.prefix}${var.spoke_02}AmlPsc"
+            psc_resource                    = "aml_01"
+            psc_subresource_names           = ["amlworkspace"]
+            psc_is_manual_connection        = "false"
+
+            dns_group_name                  = "${var.prefix}${var.spoke_02}CregDns"
+            dns_zone                        = "dns_05"
+        }
+
+    }
+
     # PIPs
     public_ip_addresses = {
 
@@ -529,8 +655,8 @@ locals {
     container_registries = {
 
         container_registry_02 = {
-            name                            = "${var.prefix}${var.spoke_02}CReg"
-            sku                             = "Standard"
+            name                            = "${var.prefix}${var.spoke_02}Creg"
+            sku                             = "Premium"
             resource_group_name             = local.rg_spoke_02_name
             admin_enabled                   = "true"
         }
@@ -540,7 +666,7 @@ locals {
     key_vaults = {
 
         key_vault_02 = {
-            name                            = "${var.prefix}${var.spoke_02}KV"
+            name                            = "${var.prefix}${var.spoke_02}Kv"
             sku_name                        = "standard"
             resource_group_name             = local.rg_spoke_02_name
             purge_protection_enabled        = "false"

@@ -17,6 +17,12 @@ module "BuildingBlocks" {
     public_ip_addresses         = module.cmdb.public_ip_addresses
     virtual_machines            = module.cmdb.virtual_machines
     network_interface_cards     = module.cmdb.network_interface_cards
+    private_dns_zones           = module.cmdb.private_dns_zones
+    private_endpoints_kv        = module.cmdb.private_endpoints_kv
+    private_endpoints_st_blob   = module.cmdb.private_endpoints_st_blob
+    private_endpoints_st_file   = module.cmdb.private_endpoints_st_file
+    private_endpoints_creg      = module.cmdb.private_endpoints_creg
+    private_endpoints_aml       = module.cmdb.private_endpoints_aml
     application_insights        = module.cmdb.application_insights
     container_registries        = module.cmdb.container_registries
     storage_accounts            = module.cmdb.storage_accounts

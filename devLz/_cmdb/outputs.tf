@@ -30,6 +30,30 @@ output "network_security_groups" {
   value = local.network_security_groups
 }
 
+output "private_dns_zones" {
+  value = local.private_dns_zones
+}
+
+output "private_endpoints_st_file" {
+  value = local.private_endpoints_st_file
+}
+
+output "private_endpoints_st_blob" {
+  value = local.private_endpoints_st_blob
+}
+
+output "private_endpoints_kv" {
+  value = local.private_endpoints_kv
+}
+
+output "private_endpoints_creg" {
+  value = local.private_endpoints_creg
+}
+
+output "private_endpoints_aml" {
+  value = local.private_endpoints_aml
+}
+
 output "public_ip_addresses" {
   value =  local.public_ip_addresses
 }
