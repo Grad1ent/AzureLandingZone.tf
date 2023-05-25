@@ -717,6 +717,11 @@ locals {
             storage_account                 = "storage_account_02"
             key_vault                       = "key_vault_02"
             public_network_access_enabled   = "true"
+
+            ci_name                         = "${var.prefix}${var.spoke_02}AmlCi"
+            ci_size                         = "Standard_DS11_v2"
+            ci_subnet                       = "snet_spoke_02_iaas"
+
         }
 
     }

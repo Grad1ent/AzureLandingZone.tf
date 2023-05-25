@@ -1,3 +1,5 @@
+data "azurerm_client_config" "current" {}
+
 variable "region" {}
 variable "tags" {}
 
