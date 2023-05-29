@@ -718,9 +718,20 @@ locals {
             key_vault                       = "key_vault_02"
             public_network_access_enabled   = "true"
 
+            # Compute instance
             ci_name                         = "${var.prefix}${var.spoke_02}AmlCi"
             ci_size                         = "Standard_DS11_v2"
             ci_subnet                       = "snet_spoke_02_iaas"
+
+            # Compute cluster
+            cc_name                         = "${var.prefix}${var.spoke_02}AmlCc"
+            cc_size                         = "Standard_DS11_v2"
+            cc_subnet                       = "snet_spoke_02_iaas"
+            #cc_priority                     = "LowPriority"
+            cc_priority                     = "Dedicated"
+            cc_min_node_count               = 0
+            cc_max_node_count               = 1
+            cc_idle                         = "PT30S" # 30 seconds
 
         }
 

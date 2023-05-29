@@ -39,6 +39,31 @@ resource "azurerm_machine_learning_compute_instance" "machine_learning_ci" {
 
         depends_on = [azurerm_machine_learning_workspace.machine_learning_workspaces]
 }
+
+resource "azurerm_machine_learning_compute_cluster" "machine_learning_cc" {
+
+    for_each = var.machine_learning_workspaces
+        location                        = var.region
+        
+        name                            = each.value["cc_name"]
+        machine_learning_workspace_id   = azurerm_machine_learning_workspace.machine_learning_workspaces["${each.key}"].id
+        vm_size                         = each.value["cc_size"]
+        subnet_resource_id              = azurerm_subnet.subnets["${each.value["cc_subnet"]}"].id
+
+        vm_priority                     = each.value["cc_priority"]
+        
+        scale_settings {
+            min_node_count                       = each.value["cc_min_node_count"]
+            max_node_count                       = each.value["cc_max_node_count"]
+            scale_down_nodes_after_idle_duration = each.value["cc_idle"]
+        }
+
+        identity {
+            type = "SystemAssigned"
+        }
+
+        depends_on = [azurerm_machine_learning_workspace.machine_learning_workspaces]
+}
 /*
 resource "null_resource" "enableIdleShutdown" {
 
