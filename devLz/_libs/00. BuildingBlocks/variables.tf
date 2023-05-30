@@ -24,3 +24,5 @@ variable "storage_accounts" {}
 variable "key_vaults" {}
 variable "databricks_workspaces" {}
 variable "machine_learning_workspaces" {}
+variable "machine_learning_compute_instances" {}
+variable "machine_learning_compute_clusters" {}

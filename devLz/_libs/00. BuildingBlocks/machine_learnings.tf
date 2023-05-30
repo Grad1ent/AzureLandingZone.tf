@@ -24,15 +24,15 @@ resource "azurerm_machine_learning_workspace" "machine_learning_workspaces" {
 }
 
 resource "azurerm_machine_learning_compute_instance" "machine_learning_ci" {
-
-    for_each = var.machine_learning_workspaces
+    
+    for_each = var.machine_learning_compute_instances
         location                        = var.region
         
         name                            = each.value["ci_name"]
-        machine_learning_workspace_id   = azurerm_machine_learning_workspace.machine_learning_workspaces["${each.key}"].id
+        machine_learning_workspace_id   = azurerm_machine_learning_workspace.machine_learning_workspaces["${each.value["ci_workspace"]}"].id
         virtual_machine_size            = each.value["ci_size"]
         subnet_resource_id              = azurerm_subnet.subnets["${each.value["ci_subnet"]}"].id
-        
+
         identity {
             type = "SystemAssigned"
         }
@@ -42,11 +42,11 @@ resource "azurerm_machine_learning_compute_instance" "machine_learning_ci" {
 
 resource "azurerm_machine_learning_compute_cluster" "machine_learning_cc" {
 
-    for_each = var.machine_learning_workspaces
+    for_each = var.machine_learning_compute_clusters
         location                        = var.region
         
         name                            = each.value["cc_name"]
-        machine_learning_workspace_id   = azurerm_machine_learning_workspace.machine_learning_workspaces["${each.key}"].id
+        machine_learning_workspace_id   = azurerm_machine_learning_workspace.machine_learning_workspaces["${each.value["cc_workspace"]}"].id
         vm_size                         = each.value["cc_size"]
         subnet_resource_id              = azurerm_subnet.subnets["${each.value["cc_subnet"]}"].id
 

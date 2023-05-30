@@ -93,3 +93,11 @@ output "databricks_workspaces" {
 output "machine_learning_workspaces" {
   value = local.machine_learning_workspaces
 }
+
+output "machine_learning_compute_instances" {
+  value = local.machine_learning_compute_instances
+}
+
+output "machine_learning_compute_clusters" {
+  value = local.machine_learning_compute_clusters
+}
