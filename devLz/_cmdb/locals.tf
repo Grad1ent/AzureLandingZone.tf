@@ -737,7 +737,7 @@ locals {
         cc_01 = {
             cc_workspace                    = "aml_01"
             cc_name                         = "${var.prefix}${var.spoke_02}AmlCc001"
-            cc_size                         = "Standard_DS11_v2"
+            cc_size                         = "STANDARD_DS11_V2"
             cc_subnet                       = "snet_spoke_02_iaas"
             cc_priority                     = "Dedicated"
             cc_min_node_count               = 0
@@ -747,7 +747,7 @@ locals {
         cc_02 = {
             cc_workspace                    = "aml_01"
             cc_name                         = "${var.prefix}${var.spoke_02}AmlCc002"
-            cc_size                         = "Standard_DS11_v2"
+            cc_size                         = "STANDARD_DS11_V2"
             cc_subnet                       = "snet_spoke_02_iaas"
             cc_priority                     = "Dedicated"
             cc_min_node_count               = 0
