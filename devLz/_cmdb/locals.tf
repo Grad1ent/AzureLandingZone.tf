@@ -656,7 +656,7 @@ locals {
 
         container_registry_02 = {
             name                            = "${var.prefix}${var.spoke_02}Creg"
-            sku                             = "Premium"
+            sku                             = "Basic"
             resource_group_name             = local.rg_spoke_02_name
             admin_enabled                   = "true"
         }

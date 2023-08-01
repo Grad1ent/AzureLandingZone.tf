@@ -8,6 +8,10 @@ resource "azurerm_container_registry" "container_registries" {
         resource_group_name     = each.value["resource_group_name"]
         admin_enabled           = each.value["admin_enabled"]
 
+        #/*
+        network_rule_set = []
+        #*/
+
         depends_on              = [azurerm_resource_group.resource_groups]
         
     lifecycle {

@@ -87,7 +87,7 @@ resource "azurerm_private_endpoint" "private_endpoints_kv" {
     }  
 
 }
-
+/*
 resource "azurerm_private_endpoint" "private_endpoints_creg" {
 
     for_each = var.private_endpoints_creg
@@ -117,7 +117,7 @@ resource "azurerm_private_endpoint" "private_endpoints_creg" {
     }  
 
 }
-
+*/
 resource "azurerm_private_endpoint" "private_endpoints_aml" {
 
     for_each = var.private_endpoints_aml
