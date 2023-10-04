@@ -6,5 +6,9 @@ according to the best design principles outlined in the Azure Cloud Adoption Fra
 
 Ref.: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/
  
+<p align="center">
+   <img src="/devLz/_diagrams/AzureLandingZone.tf.png" alt="AzureLandingZone.tf"/>
+</p>
+
 ## Contact:
 https://www.linkedin.com/in/wojciechpazdzierkiewicz/
