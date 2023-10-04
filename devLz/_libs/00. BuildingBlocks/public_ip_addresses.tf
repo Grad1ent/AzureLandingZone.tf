@@ -6,8 +6,8 @@ resource "azurerm_public_ip" "public_ip_addresses" {
         name                    = each.value["name"]
         sku                     = each.value["sku"]
         allocation_method       = each.value["allocation_method"]
-        ddos_protection_mode    = each.value["ddos_protection_mode"]
         resource_group_name     = each.value["resource_group_name"]
+        ddos_protection_mode    = each.value["ddos_protection_mode"]
 
         depends_on              = [azurerm_resource_group.resource_groups]
         

@@ -17,13 +17,11 @@ locals {
     rg_hub_name             = "${var.prefix}${var.hub}"
     rg_spoke_01_name        = "${var.prefix}${var.spoke_01}"
     rg_spoke_02_name        = "${var.prefix}${var.spoke_02}"
-    rg_spoke_02_name_tmp    = "${var.prefix}${var.spoke_02}tmp"
 
     resource_group_names = [
         local.rg_hub_name,
         local.rg_spoke_01_name,
         local.rg_spoke_02_name,
-        local.rg_spoke_02_name_tmp
     ]
 
     # VNets
@@ -380,95 +378,10 @@ locals {
                 access                      = "Allow"
                 destination_address_prefix  = "VirtualNetwork"
                 destination_port_range      = "*"
-                direction                   = "Inbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-worker-inbound"
-                description                 = "Required for worker nodes communication within a cluster."
-                priority                    = 100
+                direction                   = "Outbound"
+                name                        = "AllowVnetOutBoundCustom"
+                priority                    = 4096
                 protocol                    = "*"
-                source_address_prefix       = "VirtualNetwork"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "VirtualNetwork"
-                destination_port_range      = "22"
-                direction                   = "Inbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-control-plane-to-worker-ssh"
-                description                 = "Required for Databricks control plane management of worker nodes."
-                priority                    = 101
-                protocol                    = "Tcp"
-                source_address_prefix       = "AzureDatabricks"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "VirtualNetwork"
-                destination_port_range      = "5557"
-                direction                   = "Inbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-control-plane-to-worker-proxy"
-                description                 = "Required for Databricks control plane communication with worker nodes."
-                priority                    = 102
-                protocol                    = "Tcp"
-                source_address_prefix       = "AzureDatabricks"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "AzureDatabricks"
-                destination_port_range      = "443"
-                direction                   = "Outbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-databricks-webapp"
-                description                 = "Required for workers communication with Databricks Webapp."
-                priority                    = 100
-                protocol                    = "Tcp"
-                source_address_prefix       = "VirtualNetwork"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "Sql"
-                destination_port_range      = "3306"
-                direction                   = "Outbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-sql"
-                description                 = "Required for workers communication with Azure SQL services."
-                priority                    = 101
-                protocol                    = "Tcp"
-                source_address_prefix       = "VirtualNetwork"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "Storage"
-                destination_port_range      = "443"
-                direction                   = "Outbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-storage"
-                description                 = "Required for workers communication with Azure Storage services."
-                priority                    = 102
-                protocol                    = "Tcp"
-                source_address_prefix       = "VirtualNetwork"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "VirtualNetwork"
-                destination_port_range      = "*"
-                direction                   = "Outbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-worker-outbound"
-                description                 = "Required for worker nodes communication within a cluster."
-                priority                    = 103
-                protocol                    = "*"
-                source_address_prefix       = "VirtualNetwork"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "EventHub"
-                destination_port_range      = "9093"
-                direction                   = "Outbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-eventhub"
-                description                 = "Required for worker communication with Azure Eventhub services."
-                priority                    = 104
-                protocol                    = "Tcp"
                 source_address_prefix       = "VirtualNetwork"
                 source_port_range           = "*"                      
             }]
@@ -477,99 +390,14 @@ locals {
             name                = "${var.prefix}${var.spoke_02}AdbPublicSnetNsg"
             resource_group_name = local.rg_spoke_02_name
 
-             security_rules = [{
-                access                      = "Allow"
-                destination_address_prefix  = "VirtualNetwork"
-                destination_port_range      = "*"
-                direction                   = "Inbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-worker-inbound"
-                description                 = "Required for worker nodes communication within a cluster."
-                priority                    = 100
-                protocol                    = "*"
-                source_address_prefix       = "VirtualNetwork"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "VirtualNetwork"
-                destination_port_range      = "22"
-                direction                   = "Inbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-control-plane-to-worker-ssh"
-                description                 = "Required for Databricks control plane management of worker nodes."
-                priority                    = 101
-                protocol                    = "Tcp"
-                source_address_prefix       = "AzureDatabricks"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "VirtualNetwork"
-                destination_port_range      = "5557"
-                direction                   = "Inbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-control-plane-to-worker-proxy"
-                description                 = "Required for Databricks control plane communication with worker nodes."
-                priority                    = 102
-                protocol                    = "Tcp"
-                source_address_prefix       = "AzureDatabricks"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "AzureDatabricks"
-                destination_port_range      = "443"
-                direction                   = "Outbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-databricks-webapp"
-                description                 = "Required for workers communication with Databricks Webapp."
-                priority                    = 100
-                protocol                    = "Tcp"
-                source_address_prefix       = "VirtualNetwork"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "Sql"
-                destination_port_range      = "3306"
-                direction                   = "Outbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-sql"
-                description                 = "Required for workers communication with Azure SQL services."
-                priority                    = 101
-                protocol                    = "Tcp"
-                source_address_prefix       = "VirtualNetwork"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "Storage"
-                destination_port_range      = "443"
-                direction                   = "Outbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-storage"
-                description                 = "Required for workers communication with Azure Storage services."
-                priority                    = 102
-                protocol                    = "Tcp"
-                source_address_prefix       = "VirtualNetwork"
-                source_port_range           = "*"                      
-            },
-            {
+            security_rules = [{
                 access                      = "Allow"
                 destination_address_prefix  = "VirtualNetwork"
                 destination_port_range      = "*"
                 direction                   = "Outbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-worker-outbound"
-                description                 = "Required for worker nodes communication within a cluster."
-                priority                    = 103
+                name                        = "AllowVnetOutBoundCustom"
+                priority                    = 4096
                 protocol                    = "*"
-                source_address_prefix       = "VirtualNetwork"
-                source_port_range           = "*"                      
-            },
-            {
-                access                      = "Allow"
-                destination_address_prefix  = "EventHub"
-                destination_port_range      = "9093"
-                direction                   = "Outbound"
-                name                        = "Microsoft.Databricks-workspaces_UseOnly_databricks-worker-to-eventhub"
-                description                 = "Required for worker communication with Azure Eventhub services."
-                priority                    = 104
-                protocol                    = "Tcp"
                 source_address_prefix       = "VirtualNetwork"
                 source_port_range           = "*"                      
             }]
@@ -609,6 +437,132 @@ locals {
 
     }
 
+    #Private DNS zones
+    private_dns_zones = {
+
+        dns_01 = {
+            name                            = "privatelink.file.core.windows.net"
+            resource_group_name             = local.rg_spoke_02_name
+            vnet                            = "vnet_spoke_02"
+            vnet_link_name                  = "${var.prefix}${var.spoke_02}FileDnsLink"
+        },
+        dns_02 = {
+            name                            = "privatelink.blob.core.windows.net"
+            resource_group_name             = local.rg_spoke_02_name
+            vnet                            = "vnet_spoke_02"
+            vnet_link_name                  = "${var.prefix}${var.spoke_02}BlobDnsLink"
+        },
+        dns_03 = {
+            name                            = "privatelink.vaultcore.azure.net"
+            resource_group_name             = local.rg_spoke_02_name
+            vnet                            = "vnet_spoke_02"
+            vnet_link_name                  = "${var.prefix}${var.spoke_02}KvDnsLink"
+        },
+        dns_04 = {
+            name                            = "privatelink.azurecr.io"
+            resource_group_name             = local.rg_spoke_02_name
+            vnet                            = "vnet_spoke_02"
+            vnet_link_name                  = "${var.prefix}${var.spoke_02}CregDnsLink"
+        },
+        dns_05 = {
+            name                            = "privatelink.api.azureml.ms"
+            resource_group_name             = local.rg_spoke_02_name
+            vnet                            = "vnet_spoke_02"
+            vnet_link_name                  = "${var.prefix}${var.spoke_02}AmlDnsLink"
+        }
+    }
+
+    # Private endpoints
+    private_endpoints_st_file = {
+
+        pep_02 = {
+            name                            = "${var.prefix}${var.spoke_02}StFilePep"
+            resource_group_name             = local.rg_spoke_02_name
+            subnet                          = "snet_spoke_02_paas"
+
+            psc_name                        = "${var.prefix}${var.spoke_02}StFilePsc"
+            psc_resource                    = "storage_account_02"
+            psc_subresource_names           = ["file"]
+            psc_is_manual_connection        = "false"
+
+            dns_group_name                  = "${var.prefix}${var.spoke_02}StFileDns"
+            dns_zone                        = "dns_01"
+        }
+
+    }
+
+    private_endpoints_st_blob = {
+
+        pep_02 = {
+            name                            = "${var.prefix}${var.spoke_02}StBlobPep"
+            resource_group_name             = local.rg_spoke_02_name
+            subnet                          = "snet_spoke_02_paas"
+
+            psc_name                        = "${var.prefix}${var.spoke_02}StBlobPsc"
+            psc_resource                    = "storage_account_02"
+            psc_subresource_names           = ["blob"]
+            psc_is_manual_connection        = "false"
+
+            dns_group_name                  = "${var.prefix}${var.spoke_02}StBlobDns"
+            dns_zone                        = "dns_02"
+        }
+
+    }
+
+    private_endpoints_kv = {
+
+        pep_02 = {
+            name                            = "${var.prefix}${var.spoke_02}KvPep"
+            resource_group_name             = local.rg_spoke_02_name
+            subnet                          = "snet_spoke_02_paas"
+
+            psc_name                        = "${var.prefix}${var.spoke_02}KvPsc"
+            psc_resource                    = "key_vault_02"
+            psc_subresource_names           = ["vault"]
+            psc_is_manual_connection        = "false"
+
+            dns_group_name                  = "${var.prefix}${var.spoke_02}KvDns"
+            dns_zone                        = "dns_03"
+        }
+
+    }
+
+    private_endpoints_creg = {
+
+        pep_02 = {
+            name                            = "${var.prefix}${var.spoke_02}CregPep"
+            resource_group_name             = local.rg_spoke_02_name
+            subnet                          = "snet_spoke_02_paas"
+
+            psc_name                        = "${var.prefix}${var.spoke_02}CregPsc"
+            psc_resource                    = "container_registry_02"
+            psc_subresource_names           = ["registry"]
+            psc_is_manual_connection        = "false"
+
+            dns_group_name                  = "${var.prefix}${var.spoke_02}CregDns"
+            dns_zone                        = "dns_04"
+        }
+
+    }
+
+    private_endpoints_aml = {
+
+        pep_02 = {
+            name                            = "${var.prefix}${var.spoke_02}AmlPep"
+            resource_group_name             = local.rg_spoke_02_name
+            subnet                          = "snet_spoke_02_paas"
+
+            psc_name                        = "${var.prefix}${var.spoke_02}AmlPsc"
+            psc_resource                    = "aml_01"
+            psc_subresource_names           = ["amlworkspace"]
+            psc_is_manual_connection        = "false"
+
+            dns_group_name                  = "${var.prefix}${var.spoke_02}CregDns"
+            dns_zone                        = "dns_05"
+        }
+
+    }
+
     # PIPs
     public_ip_addresses = {
 
@@ -635,6 +589,101 @@ locals {
 
     }
 
+    # Network interace cards
+    network_interface_cards = {
+
+        nic_01 = {
+            name                            = "${var.prefix}${var.spoke_01}Nic"
+            resource_group_name             = local.rg_spoke_01_name
+
+            ip_configuration = [{
+                name                          = "ipconfig1"
+                subnet                        = "snet_spoke_01_iaas"
+                private_ip_address_allocation = "Dynamic"
+            }]
+        }
+    }
+    
+    # Virtual machines
+    virtual_machines = {
+
+        vm_01 = {
+            name                            = "${var.prefix}${var.spoke_01}Vm"
+            vm_size                         = "Standard_B2ms"
+            network_interface               = "nic_01"
+
+            resource_group_name             = local.rg_spoke_01_name
+            
+            storage_image_reference = [{
+                publisher           = "Canonical"
+                offer               = "0001-com-ubuntu-server-focal"
+                sku                 = "20_04-lts-gen2"
+                version             = "latest"
+            }]
+
+            storage_os_disk = [{
+                name                = "${var.prefix}${var.spoke_01}VmOsDisk"
+                caching             = "ReadWrite"
+                create_option       = "FromImage"
+                managed_disk_type   = "Standard_LRS"
+            }]
+
+            os_profile = [{
+                computer_name       = "devopshost"
+                admin_username      = "devadmin"
+                admin_password      = "devP@ssw0rd"
+            }]
+
+            os_profile_linux_config = [{
+                disable_password_authentication = "false"
+            }]
+
+        }
+    }     
+
+    # Application insights
+    application_insights = {
+
+        application_insights_02 = {
+            name                            = "${var.prefix}${var.spoke_02}AppIn"
+            application_type                = "web"
+            resource_group_name             = local.rg_spoke_02_name
+        }
+    }
+
+    # Container registries
+    container_registries = {
+
+        container_registry_02 = {
+            name                            = "${var.prefix}${var.spoke_02}Creg"
+            sku                             = "Basic"
+            resource_group_name             = local.rg_spoke_02_name
+            admin_enabled                   = "true"
+        }
+    }
+
+    # Key vaults
+    key_vaults = {
+
+        key_vault_02 = {
+            name                            = "${var.prefix}${var.spoke_02}Kv"
+            sku_name                        = "standard"
+            resource_group_name             = local.rg_spoke_02_name
+            purge_protection_enabled        = "false"
+        }
+    }
+
+    # Storage accounts
+    storage_accounts = {
+
+        storage_account_02 = {
+            name                            = lower("${var.prefix}${var.spoke_02}st")
+            resource_group_name             = local.rg_spoke_02_name
+            account_tier                    = "Standard"
+            account_replication_type        = "GRS"
+        }
+    }
+
     # Databricks
     databricks_workspaces = {
 
@@ -642,19 +691,70 @@ locals {
             name                            = "${var.prefix}${var.spoke_02}Adb"
             sku                             = "standard"
             resource_group_name             = local.rg_spoke_02_name
-            managed_resource_group_name     = local.rg_spoke_02_name_tmp
+            managed_resource_group_name     = "${local.rg_spoke_02_name}tmp"
             public_network_access_enabled   = "true"
 
-            parameters = [{
+            custom_parameters = [{
                 vnet                = "vnet_spoke_02"
-
+                private_subnet      = "snet_spoke_02_adb_private"
+                public_subnet       = "snet_spoke_02_adb_public"
+                
                 private_subnet_name = local.subnets.snet_spoke_02_adb_private.name
                 public_subnet_name  = local.subnets.snet_spoke_02_adb_public.name
                 
-                private_nsg         = "nsg_spoke_02_adb_private"
-                public_nsg          = "nsg_spoke_02_adb_public"
             }]
         }
     }
 
+    #Azure MLs
+    machine_learning_workspaces = {
+
+        aml_01 = {
+            name                            = "${var.prefix}${var.spoke_02}Aml"
+            resource_group_name             = local.rg_spoke_02_name
+            application_insights            = "application_insights_02"
+            container_registry              = "container_registry_02"
+            storage_account                 = "storage_account_02"
+            key_vault                       = "key_vault_02"
+            public_network_access_enabled   = "true"
+        }
+
+    }
+
+    machine_learning_compute_instances = {
+
+        ci_01 = {
+            ci_workspace                    = "aml_01"
+            ci_name                         = "${var.prefix}${var.spoke_02}AmlCi001"
+            ci_size                         = "Standard_DS11_v2"
+            ci_subnet                       = "snet_spoke_02_iaas"
+        }
+
+    }
+
+    machine_learning_compute_clusters = {
+
+        cc_01 = {
+            cc_workspace                    = "aml_01"
+            cc_name                         = "${var.prefix}${var.spoke_02}AmlCc001"
+            cc_size                         = "STANDARD_DS11_V2"
+            cc_subnet                       = "snet_spoke_02_iaas"
+            cc_priority                     = "Dedicated"
+            cc_min_node_count               = 0
+            cc_max_node_count               = 1
+            cc_idle                         = "PT30S" # 30 seconds
+        },
+        cc_02 = {
+            cc_workspace                    = "aml_01"
+            cc_name                         = "${var.prefix}${var.spoke_02}AmlCc002"
+            cc_size                         = "STANDARD_DS11_V2"
+            cc_subnet                       = "snet_spoke_02_iaas"
+            cc_priority                     = "Dedicated"
+            cc_min_node_count               = 0
+            cc_max_node_count               = 1
+            cc_idle                         = "PT30S" # 30 seconds
+        }
+
+    }
+    
 }

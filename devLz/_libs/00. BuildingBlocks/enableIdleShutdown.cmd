@@ -1,0 +1,1 @@
+curl -s -X POST -H 'Content-Type: application/json' -d '{"idleTimeBeforeShutdown": "PT15M"}' https://management.azure.com/subscriptions/e82dd30d-3520-4f29-b1e7-1a671e17c4c3/resourceGroups/uatML/providers/Microsoft.MachineLearningServices/workspaces/uatMLAml/computes/uatMLAmlCi/updateIdleShutdownSetting?api-version=2021-07-01
