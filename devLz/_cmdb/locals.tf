@@ -601,7 +601,19 @@ locals {
                 subnet                        = "snet_spoke_01_iaas"
                 private_ip_address_allocation = "Dynamic"
             }]
+        },
+
+        nic_02 = {
+            name                            = "${var.prefix}${var.spoke_02}Nic"
+            resource_group_name             = local.rg_spoke_02_name
+
+            ip_configuration = [{
+                name                          = "ipconfig1"
+                subnet                        = "snet_spoke_02_iaas"
+                private_ip_address_allocation = "Dynamic"
+            }]
         }
+
     }
     
     # Virtual machines
@@ -638,7 +650,41 @@ locals {
                 disable_password_authentication = "false"
             }]
 
+        },
+
+      vm_02 = {
+            name                            = "${var.prefix}${var.spoke_02}Vm"
+            vm_size                         = "Standard_B2ms"
+            network_interface               = "nic_02"
+
+            resource_group_name             = local.rg_spoke_02_name
+            
+            storage_image_reference = [{
+                publisher           = "Canonical"
+                offer               = "0001-com-ubuntu-server-focal"
+                sku                 = "20_04-lts-gen2"
+                version             = "latest"
+            }]
+
+            storage_os_disk = [{
+                name                = "${var.prefix}${var.spoke_02}VmOsDisk"
+                caching             = "ReadWrite"
+                create_option       = "FromImage"
+                managed_disk_type   = "Standard_LRS"
+            }]
+
+            os_profile = [{
+                computer_name       = "mlhost"
+                admin_username      = "mladmin"
+                admin_password      = "mlP@ssw0rd"
+            }]
+
+            os_profile_linux_config = [{
+                disable_password_authentication = "false"
+            }]
+
         }
+
     }     
 
     # Application insights
