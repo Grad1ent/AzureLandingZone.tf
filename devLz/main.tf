@@ -31,6 +31,7 @@ module "BuildingBlocks" {
     machine_learning_workspaces         = module.cmdb.machine_learning_workspaces
     machine_learning_compute_instances  = module.cmdb.machine_learning_compute_instances
     machine_learning_compute_clusters   = module.cmdb.machine_learning_compute_clusters
+    kubernetes_clusters                 = module.cmdb.kubernetes_clusters
 }
 
 module "DevOps" {
@@ -45,4 +46,10 @@ module "ML" {
     databricks_workspaces       = module.BuildingBlocks.databricks_workspaces
     machine_learning_workspaces = module.BuildingBlocks.machine_learning_workspaces
 
+}
+
+module "Apps" {
+    source = "./_libs/03. Apps"
+
+    kubernetes_clusters            = module.BuildingBlocks.kubernetes_clusters
 }

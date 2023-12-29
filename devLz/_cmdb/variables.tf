@@ -22,3 +22,8 @@ variable spoke_02 {
     default = "ML"
     type = string
 }
+
+variable spoke_03 {
+    default = "App"
+    type = string
+}

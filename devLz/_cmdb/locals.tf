@@ -17,11 +17,13 @@ locals {
     rg_hub_name             = "${var.prefix}${var.hub}"
     rg_spoke_01_name        = "${var.prefix}${var.spoke_01}"
     rg_spoke_02_name        = "${var.prefix}${var.spoke_02}"
+    rg_spoke_03_name        = "${var.prefix}${var.spoke_03}"
 
     resource_group_names = [
         local.rg_hub_name,
         local.rg_spoke_01_name,
         local.rg_spoke_02_name,
+        local.rg_spoke_03_name
     ]
 
     # VNets
@@ -41,6 +43,11 @@ locals {
             name                = "${var.prefix}${var.spoke_02}Vnet"
             address_space       = ["10.220.0.0/16"]
             resource_group_name = local.rg_spoke_02_name            
+        },
+        vnet_spoke_03 = {
+            name                = "${var.prefix}${var.spoke_03}Vnet"
+            address_space       = ["10.230.0.0/16"]
+            resource_group_name = local.rg_spoke_03_name            
         }   
 
     }
@@ -136,8 +143,25 @@ locals {
                                     name = "Microsoft.Databricks/workspaces"
                                     actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action", "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"]
                                 }]
-        }
-            
+        },
+        snet_spoke_03_iaas = {
+            virtual_network_name    = local.virtual_networks.vnet_spoke_03.name
+            resource_group_name     = local.virtual_networks.vnet_spoke_03.resource_group_name
+
+            name                = "${var.prefix}${var.spoke_03}IaasSnet"
+            address_prefixes    = ["10.230.100.0/24"]
+            nsg                 = "nsg_spoke_03_iaas"
+            delegations         = []
+        },
+        snet_spoke_03_paas = {
+            virtual_network_name    = local.virtual_networks.vnet_spoke_03.name
+            resource_group_name     = local.virtual_networks.vnet_spoke_03.resource_group_name
+
+            name                = "${var.prefix}${var.spoke_03}PaasSnet"
+            address_prefixes    = ["10.230.200.0/24"]
+            nsg                 = "nsg_spoke_03_paas"
+            delegations         = []
+        }            
     }
 
     # Peers
@@ -157,6 +181,13 @@ locals {
             dst_vnet            = "vnet_spoke_02"
 
         },
+        peer_hub_spoke_03 = {
+            name                = "${var.prefix}${var.spoke_03}VnetPeer"
+            resource_group_name = local.rg_hub_name
+            src_vnet            = "vnet_hub"
+            dst_vnet            = "vnet_spoke_03"
+
+        },
         peer_spoke_01_hub = {
             name                = "${var.prefix}${var.hub}VnetPeer"
             resource_group_name = local.rg_spoke_01_name
@@ -167,6 +198,12 @@ locals {
             name                = "${var.prefix}${var.hub}VnetPeer"
             resource_group_name = local.rg_spoke_02_name
             src_vnet            = "vnet_spoke_02"
+            dst_vnet            = "vnet_hub"
+        },
+        peer_spoke_03_hub = {
+            name                = "${var.prefix}${var.hub}VnetPeer"
+            resource_group_name = local.rg_spoke_03_name
+            src_vnet            = "vnet_spoke_03"
             dst_vnet            = "vnet_hub"
         }
 
@@ -433,8 +470,40 @@ locals {
                 source_address_prefix       = "VirtualNetwork"
                 source_port_range           = "*"                      
             }]
-        }    
+        },
+        #Spoke 03
+        nsg_spoke_03_iaas = {
+            name                = "${var.prefix}${var.spoke_03}IaasSnetNsg"
+            resource_group_name = local.rg_spoke_03_name
 
+            security_rules = [{
+                access                      = "Allow"
+                destination_address_prefix  = "VirtualNetwork"
+                destination_port_range      = "*"
+                direction                   = "Outbound"
+                name                        = "AllowVnetOutBoundCustom"
+                priority                    = 4096
+                protocol                    = "*"
+                source_address_prefix       = "VirtualNetwork"
+                source_port_range           = "*"                      
+            }]
+        },
+        nsg_spoke_03_paas = {
+            name                = "${var.prefix}${var.spoke_03}PaasSnetNsg"
+            resource_group_name = local.rg_spoke_03_name
+
+            security_rules = [{
+                access                      = "Allow"
+                destination_address_prefix  = "VirtualNetwork"
+                destination_port_range      = "*"
+                direction                   = "Outbound"
+                name                        = "AllowVnetOutBoundCustom"
+                priority                    = 4096
+                protocol                    = "*"
+                source_address_prefix       = "VirtualNetwork"
+                source_port_range           = "*"                      
+            }]
+        }
     }
 
     #Private DNS zones
@@ -685,7 +754,7 @@ locals {
 
         }
 
-    }     
+    }
 
     # Application insights
     application_insights = {
@@ -802,5 +871,23 @@ locals {
         }
 
     }
-    
+
+    #Azure Kubernetes Services
+    kubernetes_clusters = {
+
+        aks_01 = {
+            name                            = "${var.prefix}${var.spoke_03}AKS"
+            resource_group_name             = local.rg_spoke_03_name
+            dns_prefix                      = "${var.prefix}${var.spoke_03}aks"
+
+            default_node_pool = [{
+                name       = "default"
+                node_count = 1
+                vm_size    = "Standard_D2_v2"
+            }]
+        }
+
+    }
+
+
 }

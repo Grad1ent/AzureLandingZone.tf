@@ -26,3 +26,4 @@ variable "databricks_workspaces" {}
 variable "machine_learning_workspaces" {}
 variable "machine_learning_compute_instances" {}
 variable "machine_learning_compute_clusters" {}
+variable "kubernetes_clusters" {}
