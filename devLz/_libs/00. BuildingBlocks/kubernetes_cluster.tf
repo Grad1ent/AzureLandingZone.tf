@@ -1,4 +1,3 @@
-#/*
 resource "azurerm_kubernetes_cluster" "kubernetes_clusters" {
 
     for_each = var.kubernetes_clusters
@@ -30,4 +29,3 @@ resource "azurerm_kubernetes_cluster" "kubernetes_clusters" {
     }  
 
 }
-#*/

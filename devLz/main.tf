@@ -31,6 +31,7 @@ module "BuildingBlocks" {
     machine_learning_workspaces         = module.cmdb.machine_learning_workspaces
     machine_learning_compute_instances  = module.cmdb.machine_learning_compute_instances
     machine_learning_compute_clusters   = module.cmdb.machine_learning_compute_clusters
+    machine_learning_inference_clusters = module.cmdb.machine_learning_inference_clusters
     kubernetes_clusters                 = module.cmdb.kubernetes_clusters
 }
 

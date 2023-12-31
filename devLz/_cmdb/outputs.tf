@@ -102,6 +102,10 @@ output "machine_learning_compute_clusters" {
   value = local.machine_learning_compute_clusters
 }
 
+output "machine_learning_inference_clusters" {
+  value = local.machine_learning_inference_clusters
+}
+
 output "kubernetes_clusters" {
   value = local.kubernetes_clusters
 }

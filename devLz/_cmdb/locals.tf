@@ -872,6 +872,17 @@ locals {
 
     }
 
+    machine_learning_inference_clusters = {
+
+        aks_01 = {
+            ic_workspace                    = "aml_01"
+            ic_name                         = "${var.prefix}${var.spoke_03}AKS"
+            ic_aks                          = "aks_01"
+            ic_purpose                      = "DevTest" # "DenseProd", "FastProd"
+        }
+
+    }
+
     #Azure Kubernetes Services
     kubernetes_clusters = {
 
@@ -885,6 +896,16 @@ locals {
                 node_count = 1
                 vm_size    = "Standard_D2_v2"
             }]
+        #
+        # AML extension on AKS
+        # ref: https://learn.microsoft.com/en-us/azure/machine-learning/how-to-deploy-kubernetes-extension?view=azureml-api-2&tabs=deploy-extension-with-cli# 
+        # cli:
+        # 
+        # extName="extAml"
+        # aksName="uatAppAks"
+        # rgName="uatApp"
+        # az k8s-extension create --name $extName --extension-type Microsoft.AzureML.Kubernetes --config enableTraining=True enableInference=True inferenceRouterServiceType=LoadBalancer allowInsecureConnections=True InferenceRouterHA=False --cluster-type managedClusters --cluster-name $aksName --resource-group $rgName --scope cluster
+        #
         }
 
     }

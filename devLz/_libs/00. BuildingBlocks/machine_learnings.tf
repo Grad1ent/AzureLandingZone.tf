@@ -64,6 +64,24 @@ resource "azurerm_machine_learning_compute_cluster" "machine_learning_cc" {
 
         depends_on = [azurerm_machine_learning_workspace.machine_learning_workspaces]
 }
+
+resource "azurerm_machine_learning_inference_cluster" "machine_learning_inference_clusters" {
+
+    for_each = var.machine_learning_inference_clusters
+        location                        = var.region
+        
+        name                            = each.value["ic_name"]
+        machine_learning_workspace_id   = azurerm_machine_learning_workspace.machine_learning_workspaces["${each.value["ic_workspace"]}"].id
+        kubernetes_cluster_id           = azurerm_kubernetes_cluster.kubernetes_clusters["${each.value["ic_aks"]}"].id
+        cluster_purpose                 = each.value["ic_purpose"]
+
+        identity {
+            type = "SystemAssigned"
+        }
+
+        depends_on = [azurerm_machine_learning_workspace.machine_learning_workspaces,azurerm_kubernetes_cluster.kubernetes_clusters]
+}
+
 /*
 resource "null_resource" "enableIdleShutdown" {
 
