@@ -52,5 +52,5 @@ module "ML" {
 module "Apps" {
     source = "./_libs/03. Apps"
 
-    kubernetes_clusters            = module.BuildingBlocks.kubernetes_clusters
+    # kubernetes_clusters            = module.BuildingBlocks.kubernetes_clusters
 }

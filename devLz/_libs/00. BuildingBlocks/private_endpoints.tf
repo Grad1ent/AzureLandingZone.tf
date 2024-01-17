@@ -1,3 +1,4 @@
+/*
 resource "azurerm_private_endpoint" "private_endpoints_st_file" {
 
     for_each = var.private_endpoints_st_file
@@ -27,7 +28,8 @@ resource "azurerm_private_endpoint" "private_endpoints_st_file" {
     }  
 
 }
-
+*/
+/*
 resource "azurerm_private_endpoint" "private_endpoints_st_blob" {
 
     for_each = var.private_endpoints_st_blob
@@ -57,7 +59,8 @@ resource "azurerm_private_endpoint" "private_endpoints_st_blob" {
     }  
 
 }
-
+*/
+/*
 resource "azurerm_private_endpoint" "private_endpoints_kv" {
 
     for_each = var.private_endpoints_kv
@@ -87,6 +90,7 @@ resource "azurerm_private_endpoint" "private_endpoints_kv" {
     }  
 
 }
+*/
 /*
 resource "azurerm_private_endpoint" "private_endpoints_creg" {
 
@@ -118,6 +122,7 @@ resource "azurerm_private_endpoint" "private_endpoints_creg" {
 
 }
 */
+/*
 resource "azurerm_private_endpoint" "private_endpoints_aml" {
 
     for_each = var.private_endpoints_aml
@@ -147,3 +152,4 @@ resource "azurerm_private_endpoint" "private_endpoints_aml" {
     }  
 
 }
+*/

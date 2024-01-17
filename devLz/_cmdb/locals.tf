@@ -837,14 +837,14 @@ locals {
     }
 
     machine_learning_compute_instances = {
-
+        
         ci_01 = {
             ci_workspace                    = "aml_01"
             ci_name                         = "${var.prefix}${var.spoke_02}AmlCi001"
             ci_size                         = "Standard_DS11_v2"
             ci_subnet                       = "snet_spoke_02_iaas"
         }
-
+        
     }
 
     machine_learning_compute_clusters = {
@@ -858,7 +858,8 @@ locals {
             cc_min_node_count               = 0
             cc_max_node_count               = 1
             cc_idle                         = "PT30S" # 30 seconds
-        },
+        }
+        /*,
         cc_02 = {
             cc_workspace                    = "aml_01"
             cc_name                         = "${var.prefix}${var.spoke_02}AmlCc002"
@@ -869,7 +870,7 @@ locals {
             cc_max_node_count               = 1
             cc_idle                         = "PT30S" # 30 seconds
         }
-
+        */
     }
 
     machine_learning_inference_clusters = {

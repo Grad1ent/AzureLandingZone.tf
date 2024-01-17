@@ -64,7 +64,7 @@ resource "azurerm_machine_learning_compute_cluster" "machine_learning_cc" {
 
         depends_on = [azurerm_machine_learning_workspace.machine_learning_workspaces]
 }
-
+/*
 resource "azurerm_machine_learning_inference_cluster" "machine_learning_inference_clusters" {
 
     for_each = var.machine_learning_inference_clusters
@@ -81,7 +81,7 @@ resource "azurerm_machine_learning_inference_cluster" "machine_learning_inferenc
 
         depends_on = [azurerm_machine_learning_workspace.machine_learning_workspaces,azurerm_kubernetes_cluster.kubernetes_clusters]
 }
-
+*/
 /*
 resource "null_resource" "enableIdleShutdown" {
 

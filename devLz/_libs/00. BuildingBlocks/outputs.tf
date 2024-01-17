@@ -9,7 +9,8 @@ output "databricks_workspaces" {
 output "machine_learning_workspaces" {
   value = azurerm_machine_learning_workspace.machine_learning_workspaces
 }
-
+/*
 output "kubernetes_clusters" {
   value = azurerm_kubernetes_cluster.kubernetes_clusters
 }
+*/
