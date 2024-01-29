@@ -33,6 +33,7 @@ module "BuildingBlocks" {
     machine_learning_compute_clusters   = module.cmdb.machine_learning_compute_clusters
     machine_learning_inference_clusters = module.cmdb.machine_learning_inference_clusters
     kubernetes_clusters                 = module.cmdb.kubernetes_clusters
+    data_factories                      = module.cmdb.data_factories
 }
 
 module "DevOps" {
@@ -46,6 +47,7 @@ module "ML" {
 
     databricks_workspaces       = module.BuildingBlocks.databricks_workspaces
     machine_learning_workspaces = module.BuildingBlocks.machine_learning_workspaces
+    data_factories              = module.BuildingBlocks.data_factories
 
 }
 

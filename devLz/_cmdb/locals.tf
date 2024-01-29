@@ -911,5 +911,14 @@ locals {
 
     }
 
+    #Azure Data Factory
+    data_factories = {
+
+        adf_01 = {
+            name                            = "${var.prefix}${var.spoke_02}Adf"
+            resource_group_name             = local.rg_spoke_02_name
+        }
+
+    }
 
 }

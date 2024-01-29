@@ -109,3 +109,7 @@ output "machine_learning_inference_clusters" {
 output "kubernetes_clusters" {
   value = local.kubernetes_clusters
 }
+
+output "data_factories" {
+  value = local.data_factories
+}

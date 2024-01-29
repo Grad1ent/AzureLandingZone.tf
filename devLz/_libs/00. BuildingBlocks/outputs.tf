@@ -14,3 +14,7 @@ output "kubernetes_clusters" {
   value = azurerm_kubernetes_cluster.kubernetes_clusters
 }
 */
+
+output "data_factories" {
+  value = azurerm_data_factory.data_factories
+}
