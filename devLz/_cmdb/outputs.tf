@@ -113,3 +113,11 @@ output "kubernetes_clusters" {
 output "data_factories" {
   value = local.data_factories
 }
+
+output "data_lakes" {
+  value = local.data_lakes
+}
+
+output "synapse_workspaces" {
+  value = local.synapse_workspaces
+}

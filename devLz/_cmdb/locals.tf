@@ -791,11 +791,31 @@ locals {
     # Storage accounts
     storage_accounts = {
 
+        storage_account_01 = {
+            name                            = lower("${var.prefix}${var.spoke_02}stdl")
+            resource_group_name             = local.rg_spoke_02_name
+            account_tier                    = "Standard"
+            account_replication_type        = "GRS"
+            account_kind                    = "StorageV2"
+            is_hns_enabled                  = "true"
+        }
+
         storage_account_02 = {
             name                            = lower("${var.prefix}${var.spoke_02}st")
             resource_group_name             = local.rg_spoke_02_name
             account_tier                    = "Standard"
             account_replication_type        = "GRS"
+            account_kind                    = "StorageV2"
+            is_hns_enabled                  = "false"
+        }
+    }
+
+    # Data lakes
+    data_lakes = {
+
+        dl_01 = {
+            name                            = lower("${var.prefix}${var.spoke_02}dl")
+            storage_account                 = "storage_account_01"
         }
     }
 
@@ -917,6 +937,17 @@ locals {
         adf_01 = {
             name                            = "${var.prefix}${var.spoke_02}Adf"
             resource_group_name             = local.rg_spoke_02_name
+        }
+
+    }
+
+    #Azure Synapse Analytics
+    synapse_workspaces = {
+
+        syn_01 = {
+            name                            = lower("${var.prefix}${var.spoke_02}Syn")
+            resource_group_name             = local.rg_spoke_02_name
+            data_lake                       = "dl_01"
         }
 
     }
