@@ -1,3 +1,4 @@
+/*
 resource "azurerm_storage_data_lake_gen2_filesystem" "data_lakes" {
 
     for_each = var.data_lakes
@@ -8,3 +9,4 @@ resource "azurerm_storage_data_lake_gen2_filesystem" "data_lakes" {
         depends_on              = [azurerm_resource_group.resource_groups, azurerm_storage_account.storage_accounts]
         
 }
+*/

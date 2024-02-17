@@ -14,15 +14,18 @@ output "kubernetes_clusters" {
   value = azurerm_kubernetes_cluster.kubernetes_clusters
 }
 */
-
+/*
 output "data_factories" {
   value = azurerm_data_factory.data_factories
 }
-
+*/
+/*
 output "data_lakes" {
   value = azurerm_storage_data_lake_gen2_filesystem.data_lakes
 }
-
+*/
+/*
 output "synapse_workspaces" {
   value = azurerm_synapse_workspace.synapse_workspaces
 }
+*/

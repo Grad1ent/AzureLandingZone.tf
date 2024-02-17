@@ -1,3 +1,4 @@
+/*
 resource "azurerm_data_factory" "data_factories" {
 
     for_each = var.data_factories
@@ -13,3 +14,4 @@ resource "azurerm_data_factory" "data_factories" {
     }  
 
 }
+*/

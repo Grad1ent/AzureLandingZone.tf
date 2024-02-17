@@ -49,8 +49,8 @@ module "ML" {
 
     databricks_workspaces       = module.BuildingBlocks.databricks_workspaces
     machine_learning_workspaces = module.BuildingBlocks.machine_learning_workspaces
-    data_factories              = module.BuildingBlocks.data_factories
-    synapse_workspaces          = module.BuildingBlocks.synapse_workspaces
+    # data_factories              = module.BuildingBlocks.data_factories
+    # synapse_workspaces          = module.BuildingBlocks.synapse_workspaces
 
 }
 

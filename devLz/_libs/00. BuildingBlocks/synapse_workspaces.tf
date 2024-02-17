@@ -1,3 +1,4 @@
+/*
 resource "azurerm_synapse_workspace" "synapse_workspaces" {
 
     for_each = var.synapse_workspaces
@@ -18,3 +19,4 @@ resource "azurerm_synapse_workspace" "synapse_workspaces" {
     }  
 
 }
+*/
