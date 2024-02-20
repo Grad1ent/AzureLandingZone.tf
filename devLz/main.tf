@@ -8,6 +8,7 @@ module "BuildingBlocks" {
     region                      = module.cmdb.region
     tags                        = module.cmdb.tags
 
+    # Infra
     resource_group_names                = module.cmdb.resource_group_names
     bastion_hosts                       = module.cmdb.bastion_hosts
     virtual_networks                    = module.cmdb.virtual_networks
@@ -27,12 +28,15 @@ module "BuildingBlocks" {
     container_registries                = module.cmdb.container_registries
     storage_accounts                    = module.cmdb.storage_accounts
     key_vaults                          = module.cmdb.key_vaults
+    # Databricks ML
     databricks_workspaces               = module.cmdb.databricks_workspaces
+    # Azure ML
     machine_learning_workspaces         = module.cmdb.machine_learning_workspaces
     machine_learning_compute_instances  = module.cmdb.machine_learning_compute_instances
     machine_learning_compute_clusters   = module.cmdb.machine_learning_compute_clusters
     machine_learning_inference_clusters = module.cmdb.machine_learning_inference_clusters
     kubernetes_clusters                 = module.cmdb.kubernetes_clusters
+    # Big data
     data_factories                      = module.cmdb.data_factories
     data_lakes                          = module.cmdb.data_lakes
     synapse_workspaces                  = module.cmdb.synapse_workspaces
@@ -48,6 +52,8 @@ module "ML" {
     source = "./_libs/02. ML"
 
     databricks_workspaces       = module.BuildingBlocks.databricks_workspaces
+    databricks_clusters         = module.cmdb.databricks_clusters
+
     machine_learning_workspaces = module.BuildingBlocks.machine_learning_workspaces
     # data_factories              = module.BuildingBlocks.data_factories
     # synapse_workspaces          = module.BuildingBlocks.synapse_workspaces

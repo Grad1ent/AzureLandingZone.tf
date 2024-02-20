@@ -8,10 +8,10 @@ terraform {
 
 provider "databricks" {
   # host                        = data.azurerm_databricks_workspace.this.workspace_url
-  azure_workspace_resource_id = var.databricks_workspaces[0].id
+  azure_workspace_resource_id = var.databricks_workspaces["adb_01"].id
 
   # ARM_USE_MSI environment variable is recommended
-  azure_use_msi = true
+  # azure_use_msi = true
   
 }
 

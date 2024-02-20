@@ -841,6 +841,19 @@ locals {
         }
     }
 
+    databricks_clusters = {
+        dbc_01 = {
+            cluster_name = "${var.prefix}${var.spoke_02}AdbCl01"
+            autotermination_minutes = 10
+
+            autoscale = [{
+                min_workers = 1
+                max_workers = 2
+            }]
+        }
+
+    }
+
     #Azure MLs
     machine_learning_workspaces = {
 

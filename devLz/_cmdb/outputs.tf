@@ -90,6 +90,10 @@ output "databricks_workspaces" {
   value = local.databricks_workspaces
 }
 
+output "databricks_clusters" {
+  value = local.databricks_clusters
+}
+
 output "machine_learning_workspaces" {
   value = local.machine_learning_workspaces
 }
