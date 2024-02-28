@@ -1,3 +1,5 @@
+
+/*
 resource "azurerm_public_ip" "public_ip_addresses" {
 
     for_each = var.public_ip_addresses
@@ -16,3 +18,4 @@ resource "azurerm_public_ip" "public_ip_addresses" {
     }  
 
 }
+*/

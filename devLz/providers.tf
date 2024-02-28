@@ -11,7 +11,7 @@ terraform {
   required_version = ">= 1.1.0"
 
   backend "azurerm" {
-      resource_group_name  = "devDevOps"
+      resource_group_name  = "uatDevOps"
       storage_account_name = "devdevopstfstates"
       container_name       = "tfstates"
       key                  = "devlz/devlz.tfstate"
