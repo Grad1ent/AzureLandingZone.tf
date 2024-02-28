@@ -50,6 +50,11 @@ locals {
             name                = "${var.prefix}${var.spoke_03}Vnet"
             address_space       = ["10.230.0.0/16"]
             resource_group_name = local.rg_spoke_03_name            
+        },   
+        vnet_spoke_04 = {
+            name                = "${var.prefix}${var.spoke_04}Vnet"
+            address_space       = ["10.240.0.0/16"]
+            resource_group_name = local.rg_spoke_04_name            
         }   
 
     }
@@ -163,6 +168,24 @@ locals {
             address_prefixes    = ["10.230.200.0/24"]
             nsg                 = "nsg_spoke_03_paas"
             delegations         = []
+        },  
+        snet_spoke_04_iaas = {
+            virtual_network_name    = local.virtual_networks.vnet_spoke_04.name
+            resource_group_name     = local.virtual_networks.vnet_spoke_04.resource_group_name
+
+            name                = "${var.prefix}${var.spoke_04}IaasSnet"
+            address_prefixes    = ["10.240.100.0/24"]
+            nsg                 = "nsg_spoke_04_iaas"
+            delegations         = []
+        },
+        snet_spoke_04_paas = {
+            virtual_network_name    = local.virtual_networks.vnet_spoke_04.name
+            resource_group_name     = local.virtual_networks.vnet_spoke_04.resource_group_name
+
+            name                = "${var.prefix}${var.spoke_04}PaasSnet"
+            address_prefixes    = ["10.240.200.0/24"]
+            nsg                 = "nsg_spoke_04_paas"
+            delegations         = []
         }            
     }
 
@@ -190,6 +213,13 @@ locals {
             dst_vnet            = "vnet_spoke_03"
 
         },
+        peer_hub_spoke_04 = {
+            name                = "${var.prefix}${var.spoke_04}VnetPeer"
+            resource_group_name = local.rg_hub_name
+            src_vnet            = "vnet_hub"
+            dst_vnet            = "vnet_spoke_04"
+
+        },
         peer_spoke_01_hub = {
             name                = "${var.prefix}${var.hub}VnetPeer"
             resource_group_name = local.rg_spoke_01_name
@@ -206,6 +236,12 @@ locals {
             name                = "${var.prefix}${var.hub}VnetPeer"
             resource_group_name = local.rg_spoke_03_name
             src_vnet            = "vnet_spoke_03"
+            dst_vnet            = "vnet_hub"
+        },
+        peer_spoke_04_hub = {
+            name                = "${var.prefix}${var.hub}VnetPeer"
+            resource_group_name = local.rg_spoke_04_name
+            src_vnet            = "vnet_spoke_04"
             dst_vnet            = "vnet_hub"
         }
 
@@ -493,6 +529,39 @@ locals {
         nsg_spoke_03_paas = {
             name                = "${var.prefix}${var.spoke_03}PaasSnetNsg"
             resource_group_name = local.rg_spoke_03_name
+
+            security_rules = [{
+                access                      = "Allow"
+                destination_address_prefix  = "VirtualNetwork"
+                destination_port_range      = "*"
+                direction                   = "Outbound"
+                name                        = "AllowVnetOutBoundCustom"
+                priority                    = 4096
+                protocol                    = "*"
+                source_address_prefix       = "VirtualNetwork"
+                source_port_range           = "*"                      
+            }]
+        },
+        #Spoke 04
+        nsg_spoke_04_iaas = {
+            name                = "${var.prefix}${var.spoke_04}IaasSnetNsg"
+            resource_group_name = local.rg_spoke_04_name
+
+            security_rules = [{
+                access                      = "Allow"
+                destination_address_prefix  = "VirtualNetwork"
+                destination_port_range      = "*"
+                direction                   = "Outbound"
+                name                        = "AllowVnetOutBoundCustom"
+                priority                    = 4096
+                protocol                    = "*"
+                source_address_prefix       = "VirtualNetwork"
+                source_port_range           = "*"                      
+            }]
+        },
+        nsg_spoke_04_paas = {
+            name                = "${var.prefix}${var.spoke_04}PaasSnetNsg"
+            resource_group_name = local.rg_spoke_04_name
 
             security_rules = [{
                 access                      = "Allow"
