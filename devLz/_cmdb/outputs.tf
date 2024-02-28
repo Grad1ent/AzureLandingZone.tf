@@ -125,3 +125,7 @@ output "data_lakes" {
 output "synapse_workspaces" {
   value = local.synapse_workspaces
 }
+
+output "open_ai" {
+  value = local.open_ai
+}

@@ -18,12 +18,14 @@ locals {
     rg_spoke_01_name        = "${var.prefix}${var.spoke_01}"
     rg_spoke_02_name        = "${var.prefix}${var.spoke_02}"
     rg_spoke_03_name        = "${var.prefix}${var.spoke_03}"
+    rg_spoke_04_name        = "${var.prefix}${var.spoke_04}"
 
     resource_group_names = [
         local.rg_hub_name,
         local.rg_spoke_01_name,
         local.rg_spoke_02_name,
-        local.rg_spoke_03_name
+        local.rg_spoke_03_name,
+        local.rg_spoke_04_name
     ]
 
     # VNets
@@ -961,6 +963,18 @@ locals {
             name                            = lower("${var.prefix}${var.spoke_02}Syn")
             resource_group_name             = local.rg_spoke_02_name
             data_lake                       = "dl_01"
+        }
+
+    }
+
+    #Azure OpenAI
+    open_ai = {
+
+        oai_01 = {
+            name                            = lower("${var.prefix}${var.spoke_04}OAI")
+            resource_group_name             = local.rg_spoke_04_name
+            kind                            = "OpenAI"
+            sku_name                        = "S0"
         }
 
     }

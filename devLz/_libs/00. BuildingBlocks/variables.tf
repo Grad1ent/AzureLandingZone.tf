@@ -31,3 +31,4 @@ variable "kubernetes_clusters" {}
 variable "data_factories" {}
 variable "data_lakes" {}
 variable "synapse_workspaces" {}
+variable "open_ai" {}

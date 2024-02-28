@@ -29,3 +29,6 @@ output "synapse_workspaces" {
   value = azurerm_synapse_workspace.synapse_workspaces
 }
 */
+output "open_ai" {
+  value = azurerm_cognitive_account.open_ai
+}

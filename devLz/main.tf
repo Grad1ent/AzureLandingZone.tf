@@ -40,6 +40,8 @@ module "BuildingBlocks" {
     data_factories                      = module.cmdb.data_factories
     data_lakes                          = module.cmdb.data_lakes
     synapse_workspaces                  = module.cmdb.synapse_workspaces
+    # Azure AI
+    open_ai                             = module.cmdb.open_ai
 }
 
 module "DevOps" {
@@ -64,4 +66,10 @@ module "Apps" {
     source = "./_libs/03. Apps"
 
     # kubernetes_clusters            = module.BuildingBlocks.kubernetes_clusters
+}
+
+module "AI" {
+    source = "./_libs/04. AI"
+
+    
 }
