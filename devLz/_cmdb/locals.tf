@@ -752,12 +752,44 @@ locals {
                 subnet                        = "snet_spoke_02_iaas"
                 private_ip_address_allocation = "Dynamic"
             }]
+        },
+
+        nic_03 = {
+            name                            = "${var.prefix}${var.spoke_03}Nic"
+            resource_group_name             = local.rg_spoke_03_name
+
+            ip_configuration = [{
+                name                          = "ipconfig1"
+                subnet                        = "snet_spoke_03_iaas"
+                private_ip_address_allocation = "Dynamic"
+            }]
+        },
+
+        nic_04 = {
+            name                            = "${var.prefix}${var.spoke_04}Nic"
+            resource_group_name             = local.rg_spoke_04_name
+
+            ip_configuration = [{
+                name                          = "ipconfig1"
+                subnet                        = "snet_spoke_04_iaas"
+                private_ip_address_allocation = "Dynamic"
+            }]
         }
 
     }
     
     # Virtual machines
-    virtual_machines = {
+    # az vm image list --output table
+    # publisher:    az vm image list-publishers --location westeurope --output table
+    #                - MicrosoftWindowsServer
+    #                - MicrosoftWindowsDesktop
+    # offer:        az vm image list-offers --location westeurope --publisher MicrosoftWindowsServer --output table
+    #                - WindowsServer
+    #                - windows-11
+    # sku:          az vm image list-skus --location westeurope --publisher MicrosoftWindowsServer --offer WindowsServer --output table
+    #                - 2022-datacenter-g2
+    #                - win11-23h2-ent
+    virtual_machines_linux = {
 
         vm_01 = {
             name                            = "${var.prefix}${var.spoke_01}Vm"
@@ -821,6 +853,76 @@ locals {
 
             os_profile_linux_config = [{
                 disable_password_authentication = "false"
+            }]
+
+        }
+
+    }
+
+    virtual_machines_windows = {
+
+      vm_03 = {
+            name                            = "${var.prefix}${var.spoke_03}Vm"
+            vm_size                         = "Standard_B2ms"
+            network_interface               = "nic_03"
+
+            resource_group_name             = local.rg_spoke_03_name
+            
+            storage_image_reference = [{
+                publisher           = "MicrosoftWindowsDesktop"
+                offer               = "windows-11"
+                sku                 = "win11-23h2-ent"
+                version             = "latest"
+            }]
+
+            storage_os_disk = [{
+                name                = "${var.prefix}${var.spoke_03}VmOsDisk"
+                caching             = "ReadWrite"
+                create_option       = "FromImage"
+                managed_disk_type   = "Standard_LRS"
+            }]
+
+            os_profile = [{
+                computer_name       = "apphost"
+                admin_username      = "appadmin"
+                admin_password      = "appP@ssw0rd"
+            }]
+
+            os_profile_windows_config = [{
+                provision_vm_agent = "true"
+            }]
+
+        }
+
+      vm_04 = {
+            name                            = "${var.prefix}${var.spoke_04}Vm"
+            vm_size                         = "Standard_B2ms"
+            network_interface               = "nic_04"
+
+            resource_group_name             = local.rg_spoke_04_name
+            
+            storage_image_reference = [{
+                publisher           = "MicrosoftWindowsServer"
+                offer               = "WindowsServer"
+                sku                 = "2022-datacenter-g2"
+                version             = "latest"
+            }]
+
+            storage_os_disk = [{
+                name                = "${var.prefix}${var.spoke_04}VmOsDisk"
+                caching             = "ReadWrite"
+                create_option       = "FromImage"
+                managed_disk_type   = "Standard_LRS"
+            }]
+
+            os_profile = [{
+                computer_name       = "aihost"
+                admin_username      = "aiadmin"
+                admin_password      = "aiP@ssw0rd"
+            }]
+
+            os_profile_windows_config = [{
+                provision_vm_agent = "true"
             }]
 
         }

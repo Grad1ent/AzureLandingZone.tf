@@ -16,7 +16,8 @@ module "BuildingBlocks" {
     subnets                             = module.cmdb.subnets
     network_security_groups             = module.cmdb.network_security_groups
     public_ip_addresses                 = module.cmdb.public_ip_addresses
-    virtual_machines                    = module.cmdb.virtual_machines
+    virtual_machines_linux              = module.cmdb.virtual_machines_linux
+    virtual_machines_windows            = module.cmdb.virtual_machines_windows
     network_interface_cards             = module.cmdb.network_interface_cards
     private_dns_zones                   = module.cmdb.private_dns_zones
     private_endpoints_kv                = module.cmdb.private_endpoints_kv
@@ -47,7 +48,8 @@ module "BuildingBlocks" {
 module "DevOps" {
     source = "./_libs/01. DevOps"
 
-    virtual_machines            = module.BuildingBlocks.virtual_machines
+    virtual_machines_linux            = module.BuildingBlocks.virtual_machines_linux
+    virtual_machines_windows          = module.BuildingBlocks.virtual_machines_windows
 }
 
 module "ML" {

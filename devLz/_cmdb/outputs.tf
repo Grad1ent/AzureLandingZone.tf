@@ -66,8 +66,12 @@ output "network_interface_cards" {
  value = local.network_interface_cards
 }
 
-output "virtual_machines" {
-  value = local.virtual_machines
+output "virtual_machines_linux" {
+  value = local.virtual_machines_linux
+}
+
+output "virtual_machines_windows" {
+  value = local.virtual_machines_windows
 }
 
 output "application_insights" {

@@ -17,7 +17,8 @@ variable "private_endpoints_st_blob" {}
 variable "private_endpoints_st_file" {}
 variable "private_endpoints_creg" {}
 variable "private_endpoints_aml" {}
-variable "virtual_machines" {}
+variable "virtual_machines_linux" {}
+variable "virtual_machines_windows" {}
 variable "application_insights" {}
 variable "container_registries" {}
 variable "storage_accounts" {}

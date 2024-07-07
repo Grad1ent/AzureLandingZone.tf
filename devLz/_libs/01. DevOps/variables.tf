@@ -1,1 +1,2 @@
-variable "virtual_machines" {}
+variable "virtual_machines_linux" {}
+variable "virtual_machines_windows" {}

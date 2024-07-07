@@ -1,5 +1,9 @@
-output "virtual_machines" {
-  value = azurerm_virtual_machine.virtual_machines
+output "virtual_machines_linux" {
+  value = azurerm_virtual_machine.virtual_machines_linux
+}
+
+output "virtual_machines_windows" {
+  value = azurerm_virtual_machine.virtual_machines_windows
 }
 
 output "databricks_workspaces" {
