@@ -1,4 +1,4 @@
-/*
+#/*
 resource "azurerm_bastion_host" "bastion_hosts" {
 
     for_each = var.bastion_hosts
@@ -6,6 +6,7 @@ resource "azurerm_bastion_host" "bastion_hosts" {
         
         name                = each.value["name"]
         sku                 = each.value["sku"]
+        tunneling_enabled   = each.value["tunneling_enabled"]
         resource_group_name = each.value["resource_group_name"]
 
         ip_configuration {
@@ -22,4 +23,4 @@ resource "azurerm_bastion_host" "bastion_hosts" {
     }  
 
 }
-*/
+#*/

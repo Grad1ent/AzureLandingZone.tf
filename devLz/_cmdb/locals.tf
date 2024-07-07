@@ -243,6 +243,18 @@ locals {
             resource_group_name = local.rg_spoke_04_name
             src_vnet            = "vnet_spoke_04"
             dst_vnet            = "vnet_hub"
+        },
+        peer_spoke_03_spoke_04 = {
+            name                = "${var.prefix}${var.spoke_04}VnetPeer"
+            resource_group_name = local.rg_spoke_03_name
+            src_vnet            = "vnet_spoke_03"
+            dst_vnet            = "vnet_spoke_04"
+        },
+        peer_spoke_04_spoke_03 = {
+            name                = "${var.prefix}${var.spoke_03}VnetPeer"
+            resource_group_name = local.rg_spoke_04_name
+            src_vnet            = "vnet_spoke_04"
+            dst_vnet            = "vnet_spoke_03"
         }
 
     }
@@ -724,6 +736,7 @@ locals {
             pip                 = "pip_hub_01"
             #vnet                = "vnet_hub"
             snet                = "snet_hub_bastion"
+            tunneling_enabled   = "true"
             resource_group_name = local.rg_hub_name
         }
 
