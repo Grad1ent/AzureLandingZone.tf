@@ -2,14 +2,15 @@
 resource "azurerm_databricks_workspace" "databricks_workspaces" {
 
     for_each = var.databricks_workspaces
-        location                        = var.region
+        location                            = var.region
         
-        name                            = each.value["name"]
-        sku                             = each.value["sku"]
-        resource_group_name             = each.value["resource_group_name"]
-        managed_resource_group_name     = each.value["managed_resource_group_name"]
-        public_network_access_enabled   = each.value["public_network_access_enabled"]
-        
+        name                                = each.value["name"]
+        sku                                 = each.value["sku"]
+        resource_group_name                 = each.value["resource_group_name"]
+        managed_resource_group_name         = each.value["managed_resource_group_name"]
+        public_network_access_enabled       = each.value["public_network_access_enabled"]
+        infrastructure_encryption_enabled   = each.value["infrastructure_encryption_enabled"]
+
         dynamic "custom_parameters" {
         
             for_each = each.value.custom_parameters

@@ -1009,11 +1009,12 @@ locals {
     databricks_workspaces = {
 
         adb_01 = {
-            name                            = "${var.prefix}${var.spoke_02}Adb"
-            sku                             = "standard"
-            resource_group_name             = local.rg_spoke_02_name
-            managed_resource_group_name     = "${local.rg_spoke_02_name}tmp"
-            public_network_access_enabled   = "true"
+            name                                = "${var.prefix}${var.spoke_02}Adb"
+            sku                                 = "premium"
+            resource_group_name                 = local.rg_spoke_02_name
+            managed_resource_group_name         = "${local.rg_spoke_02_name}tmp"
+            public_network_access_enabled       = "true"
+            infrastructure_encryption_enabled   = "true"
 
             custom_parameters = [{
                 vnet                = "vnet_spoke_02"
